@@ -1,0 +1,43 @@
+PODS:
+  - Curve25519 (1.1)
+  - esp32_ble_provisioning_plugin (0.0.1):
+    - ESPProvision
+    - Flutter
+    - MBProgressHUD
+  - ESPProvision (2.0.8):
+    - ESPProvision/Core (= 2.0.8)
+  - ESPProvision/Core (2.0.8):
+    - Curve25519 (~> 1.1.0)
+    - SwiftProtobuf (~> 1.5.0)
+  - Flutter (1.0.0)
+  - MBProgressHUD (1.2.0)
+  - SwiftProtobuf (1.5.0)
+
+DEPENDENCIES:
+  - esp32_ble_provisioning_plugin (from `.symlinks/plugins/esp32_ble_provisioning_plugin/ios`)
+  - Flutter (from `Flutter`)
+
+SPEC REPOS:
+  trunk:
+    - Curve25519
+    - ESPProvision
+    - MBProgressHUD
+    - SwiftProtobuf
+
+EXTERNAL SOURCES:
+  esp32_ble_provisioning_plugin:
+    :path: ".symlinks/plugins/esp32_ble_provisioning_plugin/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  Curve25519: 5f595e906bd962248665978e2992a1fe96e2d831
+  esp32_ble_provisioning_plugin: e2b4c9b9fcf5dfea85f304c0fc79e923856fabd9
+  ESPProvision: 62a5865048f82b13ba09aecd7819485085b04180
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  SwiftProtobuf: 241400280f912735c1e1b9fe675fdd2c6c4d42e2
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1
