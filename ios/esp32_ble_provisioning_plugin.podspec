@@ -11,7 +11,7 @@ An esp32 ble provisioning plugin
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'ali.h.shehab93@gmail.com' }
+  s.author           = { 'Ali Shehab' => 'ali.h.shehab93@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
