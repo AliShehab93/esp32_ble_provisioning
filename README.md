@@ -5,11 +5,11 @@ An esp32 ble provisioning plugin
 ## Getting Started
 ###### This plugin is supported for both android and ios platforms
 
-###ios integration:
-#####Need to add NSBluetoothAlwaysUsageDescription in info.plist file in the project/ios directopry
+##ios integration:
+###### Need to add NSBluetoothAlwaysUsageDescription in info.plist file in the project/ios directopry
 
-###android integration:
-##### Need to add minSdkVersion 24 in app/gradle
+##android integration:
+###### Need to add minSdkVersion 24 in app/gradle
 
 This project is a starting point for a Flutter
 [plug-in package](https://flutter.dev/developing-packages/),

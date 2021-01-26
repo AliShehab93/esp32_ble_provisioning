@@ -12,6 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//
+//  AppConstants.java
+//  esp32_ble_provisioning_plugin
+//
+//  Created by Ali Shehab email: ali.h.shehab93@gmail.com on 26/01/2021.
+//
+
 package com.ash93.esp32_ble_provisioning_plugin;
 
 public class AppConstants {

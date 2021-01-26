@@ -1,3 +1,10 @@
+//
+//  Esp32BleProvisioningPlugin.java
+//  esp32_ble_provisioning_plugin
+//
+//  Created by Ali Shehab email: ali.h.shehab93@gmail.com on 26/01/2021.
+//
+
 package com.ash93.esp32_ble_provisioning_plugin;
 
 import androidx.annotation.NonNull;
@@ -41,8 +48,6 @@ public class Esp32BleProvisioningPlugin implements FlutterPlugin, MethodCallHand
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "esp32_ble_provisioning_plugin");
     channel.setMethodCallHandler(this);
 
-    System.out.println("onAttachedToEngine withhh");
-
     /// stream for available devices
     eventChannelAvailableDevices = new EventChannel(flutterPluginBinding.getBinaryMessenger(), "available_ble_devices_stream");
     eventChannelAvailableDevices.setStreamHandler(new EventChannel.StreamHandler() {
@@ -52,10 +57,7 @@ public class Esp32BleProvisioningPlugin implements FlutterPlugin, MethodCallHand
       }
 
       @Override
-      public void onCancel(Object arguments) {
-        System.out.println("stream is cancellledddddd   ");
-
-      }
+      public void onCancel(Object arguments) { }
     });
 
     /// stream for connecting for device
@@ -67,10 +69,7 @@ public class Esp32BleProvisioningPlugin implements FlutterPlugin, MethodCallHand
       }
 
       @Override
-      public void onCancel(Object arguments) {
-        System.out.println("stream is cancellledddddd   ");
-
-      }
+      public void onCancel(Object arguments) {}
     });
   }
 
@@ -80,7 +79,6 @@ public class Esp32BleProvisioningPlugin implements FlutterPlugin, MethodCallHand
     if (call.method.equals("searchForBleDevices")) {
       if (ContextCompat.checkSelfPermission(context,
               Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-        System.out.println("No location permission ");
         emitterAvailableDevices.success("No location permission");
         if (ActivityCompat.shouldShowRequestPermissionRationale(context,
                 Manifest.permission.ACCESS_FINE_LOCATION)){
@@ -91,23 +89,15 @@ public class Esp32BleProvisioningPlugin implements FlutterPlugin, MethodCallHand
                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
       }else{
-        System.out.println("Granted location permission ");
         bLEProvisionLanding.searchForBleDevices();
       }
     } else if (call.method.equals("connectToDevice")) {
-      System.out.println("begin 0 ");
       final String deviceName = call.argument("deviceName");
       final String securityKey = call.argument("securityKey");
       final String ssid = call.argument("ssid");
       final String password = call.argument("password");
 
-      System.out.println("ffffaaaaaa     deviceName "+deviceName);
-      System.out.println("securityKey "+securityKey);
-      System.out.println("ssid "+ssid);
-      System.out.println("password "+password);
-      System.out.println("Granted location permission ");
       bLEProvisionLanding.tryingToConnectToDevice(deviceName, securityKey, ssid, password);
-      System.out.println("connect to device starteddddd ");
     } else {
       result.notImplemented();
     }
@@ -123,7 +113,6 @@ public class Esp32BleProvisioningPlugin implements FlutterPlugin, MethodCallHand
     this.context = binding.getActivity();
     this.bLEProvisionLanding = new BLEProvisionLanding();
     this.bLEProvisionLanding.initializeBleProvisionLanding(context);
-    System.out.println("pluginn constructor");
   }
 
   @Override

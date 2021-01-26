@@ -12,7 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//package android.src.main.java.com.ash93.esp32_ble_provisioning_plugin;
+//
+//  BLEProvisionLanding.java
+//  esp32_ble_provisioning_plugin
+//
+//  Created by Ali Shehab email: ali.h.shehab93@gmail.com on 26/01/2021.
+//
+
 package com.ash93.esp32_ble_provisioning_plugin;
 
 import android.Manifest;
@@ -81,8 +87,6 @@ public class BLEProvisionLanding {
     public void initializeBleProvisionLanding(Activity activity) {
         this.activity = activity;
 
-        System.out.println("heyyyy fitnnaaaaaa 111");
-
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
         if (!activity.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
@@ -114,8 +118,6 @@ public class BLEProvisionLanding {
         sharedPreferences = activity.getSharedPreferences(AppConstants.ESP_PREFERENCES, Context.MODE_PRIVATE);
         deviceNamePrefix = "";
         eventBus.getDefault().register(this);
-        System.out.println("heyyyy fitnnaaaaaa 4444");
-        System.out.println("NOWW BEGINNNNNN ########################  00000 -- create device");
         final String deviceType = sharedPreferences.getString(AppConstants.KEY_DEVICE_TYPES, AppConstants.DEVICE_TYPE_BLE);
         final boolean isSec1 = sharedPreferences.getBoolean(AppConstants.KEY_SECURITY_TYPE, true);
         Log.d(TAG, "Device Types : " + deviceType);
@@ -130,17 +132,13 @@ public class BLEProvisionLanding {
         if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             System.out.println("NOWW BEGINNNNNN ########################  00000 -- searching for devices device");
             provisionManager.searchBleEspDevices(deviceNamePrefix, bleScanListener);
-            System.out.println("heyye hala2 huneee");
         } else {
             Log.e(TAG, "Not able to start scan as Location permission is not granted.");
             Toast.makeText(activity, "Please give location permission to start BLE scan", Toast.LENGTH_LONG).show();
         }
-        System.out.println("heyyyy fitnnaaaaaa 55555");
     }
 
-
-
-
+    /// listener for receiving the ble devices
     private BleScanListener bleScanListener = new BleScanListener() {
 
         @Override
@@ -165,13 +163,9 @@ public class BLEProvisionLanding {
             }
 
             if (!deviceExists) {
-//                listView.setVisibility(View.VISIBLE);
                 bluetoothDevices.put(device, serviceUuid);
                 deviceList.add(device);
                 returnedDevicesNames.add(device.getName());
-
-                System.out.println("device isss:::   "+device.getAddress()   + " --- "+device.getName()   + " --- "+device.getAddress()   + " --- ");
-                System.out.println("deviceList  isss:::   "+deviceList);
             }
         }
 
@@ -188,6 +182,7 @@ public class BLEProvisionLanding {
     };
 
 
+    /// trying to connect to device
     public void tryingToConnectToDevice(String deviceName, String securityKey, String ssid, String password){
         this.securityKey = securityKey;
         this.ssid = ssid;
@@ -195,44 +190,14 @@ public class BLEProvisionLanding {
         provisionManager = ESPProvisionManager.getInstance(activity);
         espDevice = provisionManager.createESPDevice(ESPConstants.TransportType.TRANSPORT_BLE, ESPConstants.SecurityType.SECURITY_1);
 
-        System.out.println("NOWW BEGINNNNNN ######################## provisionManager "+provisionManager);
-        System.out.println("NOWW BEGINNNNNN ######################## espDevice        "+espDevice);
-        System.out.println("NOWW BEGINNNNNN ########################  11111 -- connect to device");
-
-        System.out.println("VVV 00 @@ securityKey "+this.securityKey);
-        System.out.println("VVV 00 @@ssid "+this.ssid);
-        System.out.println("VVV 00 @@ password "+this.password);
-
-        System.out.println("deviceList.size() -- "+deviceList.size());
-        System.out.println("deviceList.size() -- ");
-
-        System.out.println("beforeee   fattt inn loooooop  0");
-        System.out.println("beforeee   fattt inn loooooop  1");
-        System.out.println("beforeee   fattt inn loooooop  2");
-        System.out.println("beforeee   fattt inn loooooop  3");
-        System.out.println("beforeee   fattt inn loooooop  4");
-        System.out.println("beforeee   fattt inn loooooop  5");
-        System.out.println("beforeee   fattt inn loooooop  6");
-        System.out.println("beforeee   fattt inn loooooop  7");
-
-
         for (int i = 0; i < deviceList.size(); i++) {
-            System.out.println("bluetoothDevices   isss i  "+deviceList.get(i).getName());
             if(deviceList.get(i).getName().equals(deviceName)){
-                System.out.println("now fatttt To staerrr 000");
                 BluetoothDevice provDevice = deviceList.get(i);
-                System.out.println("now fatttt To staerrr 111");
                 String uuid = bluetoothDevices.get(provDevice);
-                System.out.println("now fatttt To staerrr 222");
                 Log.d(TAG, "=================== Connect to provDevice : " + provDevice.getName() + " UUID : " + uuid);
 
                 if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-                    System.out.println("NOWW Trying to connecttt  !!!!!!!!!!!!!! ");
-
-                    System.out.println("now begin toi connect");
                     espDevice.connectBLEDevice(provDevice, uuid);
-                    System.out.println("it should be connected");
                 } else {
                     Log.e(TAG, "Not able to connect provDevice as Location permission is not granted.");
                     Toast.makeText(activity, "Please give location permission to connect provDevice", Toast.LENGTH_LONG).show();
@@ -242,49 +207,40 @@ public class BLEProvisionLanding {
     }
 
 
+    /// listener for connection with the device
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(DeviceConnectionEvent event) {
-        System.out.println("fatititititi in eventttttttt");
-
-        System.out.println("VVV securityKey "+securityKey);
-        System.out.println("VVV ssid "+ssid);
-        System.out.println("VVV password "+password);
-
         Log.d(TAG, "ON Device Prov Event RECEIVED : " + event.getEventType());
         switch (event.getEventType()) {
             case ESPConstants.EVENT_DEVICE_CONNECTED:
                 Log.e(TAG, "Device Connected Event Received");
                 ArrayList<String> deviceCaps = espDevice.getDeviceCapabilities();
 
+                /// adding security ket  to connect to ble device, then trying to open session ad send wifi config parameters
                 if (deviceCaps != null && !deviceCaps.contains("no_pop") && securityType == 1) {
-                    System.out.println("fatititititi in eventttttttt YESSSSSSSSS bleutoooth ");
                     espDevice.setProofOfPossession(securityKey);
                     Esp32BleProvisioningPlugin.emitter.success("deviceConnected");
+                    Log.e(TAG, "Device Connected");
                     tryingToOpenSessionWithWifiSSidAndPassword(ssid, password);
-                } else if (deviceCaps.contains("wifi_scan")) {
-                    System.out.println("fatititititi in eventttttttt No 0 ");
-
-                } else {
-                    System.out.println("fatititititi in eventttttttt No 1");
                 }
                 break;
 
             case ESPConstants.EVENT_DEVICE_DISCONNECTED:
-                System.out.println("fatititititi in eventttttttt Device disconnected");
                 Esp32BleProvisioningPlugin.emitter.success("deviceDisConnected");
+                Log.e(TAG, "Device dis connected");
                 Toast.makeText(activity, "Device disconnected", Toast.LENGTH_LONG).show();
                 break;
 
             case ESPConstants.EVENT_DEVICE_CONNECTION_FAILED:
-                System.out.println("fatititititi in eventttttttt Failed to connect with device");
                 Esp32BleProvisioningPlugin.emitter.success("failedToConnectToDevice");
+                Log.e(TAG, "failed to connect to device");
                 Toast.makeText(activity, "Failed to connect device", Toast.LENGTH_LONG).show();
                 break;
         }
     }
 
+    /// trying to send the wifi config parameters with getting the status of provisioning
     public void tryingToOpenSessionWithWifiSSidAndPassword(String ssid, String password) {
-        System.out.println("NOWW Trying to open session  !!!!!!!!!!!!!! ");
         espDevice.provision(ssid, password, new ProvisionListener() {
 
             @Override
@@ -303,8 +259,8 @@ public class BLEProvisionLanding {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println(" wifi Config Sent");;
                         Esp32BleProvisioningPlugin.emitter.success("wifiConfigSent");
+                        System.out.println(" wifi Config Sent");;
                     }
                 });
             }
@@ -329,8 +285,6 @@ public class BLEProvisionLanding {
                         System.out.println(" wifi Config applied");
                     }
                 });
-
-
             }
 
             @Override
@@ -342,8 +296,6 @@ public class BLEProvisionLanding {
                         System.out.println(" wifi Config applied failed");
                     }
                 });
-
-
             }
 
             @Override
@@ -399,14 +351,11 @@ public class BLEProvisionLanding {
 
 
     private boolean hasPermissions() {
-
         if (bleAdapter == null || !bleAdapter.isEnabled()) {
-
             requestBluetoothEnable();
             return false;
 
         } else if (!hasLocationPermissions()) {
-
             requestLocationPermission();
             return false;
         }
@@ -414,7 +363,6 @@ public class BLEProvisionLanding {
     }
 
     private void requestBluetoothEnable() {
-
         Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
         activity.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         Log.d(TAG, "Requested user enables Bluetooth.");
