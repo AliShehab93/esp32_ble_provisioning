@@ -1,3 +1,30 @@
+// Copyright 2020 Espressif Systems (Shanghai) PTE LTD
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// Copyright 2021 Ali Shehab ali.h.shehab93@gmail.com
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 //  BleProvisionDeviceConnect.swift
 //  esp32_ble_provisioning_plugin
@@ -15,28 +42,18 @@ public class BLEProvisionDeviceConnect: UIViewController  {
     var pop = ""
     
     public func connectToDevice (bleDevices: Array<ESPDevice>, deviceName: String, securityKey: String, ssid: String, password: String) {
-      print("bleDevices:::: ",bleDevices)
-        
-        print("in connectt deviceName areee:  ",deviceName)
-        print("in connectt securityKey areee:  ",securityKey)
-        print("in connectt ssid areee:  ",ssid)
-        print("in connectt password areee:  ",password)
         
         pop = securityKey
-        var securityMode:ESPSecurity
         
         /// searching for  the selected device
         for device in bleDevices {
-            print("device  is:: ", device.name)
             if(device.name == deviceName){
-                print("Founddd my deviceeeeee   ", device.name, device.security)
                 /// now need to connect to the selected device
                 espDevice = device
                 espDevice.connect(delegate: self) { status in
                     DispatchQueue.main.async {
                         switch status {
                         case .connected:
-                            print("conecteddddddd HEYYYY()()()()()()( my deviceeeeee   ")
                             if let controller = SwiftStreamBleDeviceConnect.eventSinkDeviceConnect {
                                 controller("deviceConnected")
                             }
@@ -45,28 +62,24 @@ public class BLEProvisionDeviceConnect: UIViewController  {
                                 DispatchQueue.main.async {
                                     switch status {
                                     case .success:
-                                        print("Device has been successfully provisioned!")
                                         if let controller = SwiftStreamBleDeviceConnect.eventSinkDeviceConnect {
                                             controller("provisioninSuccess")
                                         }
-                                    case let .failure(error):
-                                        print("ERRoorrr provisoionggg")
+                                    case .failure(_):
                                         if let controller = SwiftStreamBleDeviceConnect.eventSinkDeviceConnect {
                                             controller("onProvisioninFailed")
                                         }
-                                        
 //                                        switch error {
 //                                        case .configurationError:
-//                                            self.step1FailedWithMessage(message: "Failed to apply network                                         configuration to device")
+//                                            self.step1FailedWithMessage(message: "Failed to apply network                                                           configuration to device")
 //                                        case .sessionError:
-//                                            self.step1FailedWithMessage(message: "Session is not                                                      established")
+//                                            self.step1FailedWithMessage(message: "Session is not                                                                    established")
 //                                        case .wifiStatusDisconnected:
 //                                            self.step2FailedWithMessage(error: error)
 //                                        default:
 //                                            self.step2FailedWithMessage(error: error)
 //                                        }
                                     case .configApplied:
-                                        print("Config sent and applied successfully")
                                         if let controller = SwiftStreamBleDeviceConnect.eventSinkDeviceConnect {
                                             controller("wifiConfigSent")
                                             controller("wifiConfigApplied")
@@ -74,15 +87,13 @@ public class BLEProvisionDeviceConnect: UIViewController  {
                                     }
                                 }
                             }
-                        case let .failedToConnect(error):
-                            print("failed to connect   ", error)
+                        case .failedToConnect(_):
                             if let controller = SwiftStreamBleDeviceConnect.eventSinkDeviceConnect {
                                 controller("failedToConnectToDevice")
                             }
                         default:
                             let action = UIAlertAction(title: "Retry", style: .default, handler: nil)
                             self.showAlert(error: "Device disconnected", action: action)
-                            print("default nfailed to connect   ")
                             if let controller = SwiftStreamBleDeviceConnect.eventSinkDeviceConnect {
                                 controller("failedToConnectToDevice")
                             }
@@ -108,4 +119,3 @@ extension BLEProvisionDeviceConnect: ESPDeviceConnectionDelegate {
         return pop
     }
 }
-

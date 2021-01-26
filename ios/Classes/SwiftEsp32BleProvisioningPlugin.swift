@@ -1,3 +1,10 @@
+//
+//  SwiftEsp32BleProvisioningPlugin.swift
+//  esp32_ble_provisioning_plugin
+//
+//  Created by Ali Shehab on 26/01/2021.
+//
+
 import Flutter
 import UIKit
 
@@ -10,8 +17,6 @@ public class SwiftEsp32BleProvisioningPlugin: NSObject, FlutterPlugin {
     let instance = SwiftEsp32BleProvisioningPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
 
-    print("gggggg")
-
         /// initializing ble
         ble = BLEProvisionLanding()
 
@@ -22,7 +27,6 @@ public class SwiftEsp32BleProvisioningPlugin: NSObject, FlutterPlugin {
         /// creating the stream to listen to device connect states
         let connectToBleDeviceChannel = FlutterEventChannel(name: "connecting_to_device_stream", binaryMessenger:registrar.messenger())
         connectToBleDeviceChannel.setStreamHandler(SwiftStreamBleDeviceConnect())
-        print("kkkkkk")
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
@@ -32,9 +36,6 @@ public class SwiftEsp32BleProvisioningPlugin: NSObject, FlutterPlugin {
         }
         /// method  to connect to device
         else if(call.method == "connectToDevice") {
-            print("YEEESSS wwe are herereeeee  ")
-            print("arguementssa areee:  ",call.arguments ?? "no argumentss")
-
             guard let args = call.arguments else {
                 return result("iOS could not recognize flutter arguments in method: (sendParams)")
                 }
@@ -44,12 +45,6 @@ public class SwiftEsp32BleProvisioningPlugin: NSObject, FlutterPlugin {
                      let securityKey = myArgs["securityKey"],
                      let ssid = myArgs["ssid"],
                      let password = myArgs["password"] {
-
-                print("deviceName areee:  ",deviceName)
-                print("securityKey areee:  ",securityKey)
-                print("ssid areee:  ",ssid)
-                print("password areee:  ",password)
-
                 let bleDeveiceConnect = BLEProvisionDeviceConnect()
                 bleDeveiceConnect.connectToDevice(bleDevices: SwiftEsp32BleProvisioningPlugin.ble?.bleDevices ?? [], deviceName: deviceName, securityKey: securityKey, ssid: ssid, password: password)
                   } else {
