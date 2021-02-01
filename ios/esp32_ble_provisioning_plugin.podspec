@@ -16,7 +16,8 @@ An esp32 ble provisioning plugin
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.platform = :ios, '11.0'
-  s.dependency 'ESPProvision'
+  s.dependency 'SwiftProtobuf'
+  s.dependency 'Curve25519'
   s.dependency 'MBProgressHUD'
 
   # Flutter.framework does not contain a i386 slice.
