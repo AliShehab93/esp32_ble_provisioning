@@ -7,7 +7,7 @@ Wi-fi provisioning is not supported.
 ## Getting Started
 ###### This plugin is supported for both android and ios platforms
 
-##Ios integration:
+## Ios integration:
 ###### Need to add NSBluetoothAlwaysUsageDescription in info.plist file in the project/ios directopry
 ###### Assign minimum platform version to 11
 ###### For making all your packages in your project have minimum version to 11 you can add this code to your podfile
@@ -19,5 +19,5 @@ post_install do |installer|
         end
   end
 end
-##Android integration:
+## Android integration:
 ###### Need to add minSdkVersion 24 in app/gradle
