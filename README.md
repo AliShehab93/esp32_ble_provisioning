@@ -21,3 +21,11 @@ post_install do |installer|
 end
 ## Android integration:
 ###### Need to add minSdkVersion 24 in app/gradle
+###### if you face some problems like duplicate protobuf classes, then post the following code into your build.gradle (app module) file:
+android {
+    ... 
+    configurations {
+            implementation.exclude module:'protobuf-lite'
+            implementation.exclude module:'protobuf-java'
+    }
+}
