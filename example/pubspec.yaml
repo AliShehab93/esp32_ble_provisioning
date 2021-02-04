@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  cloud_firestore: ^0.16.0
   esp32_ble_provisioning_plugin:
     # When depending on this package from a real application you should use:
     #   esp32_ble_provisioning_plugin: ^x.y.z
