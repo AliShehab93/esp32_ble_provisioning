@@ -111,7 +111,6 @@ public class BLEProvisionLanding {
         final BluetoothManager bluetoothManager = (BluetoothManager) activity.getSystemService(Context.BLUETOOTH_SERVICE);
         bleAdapter = bluetoothManager.getAdapter();
 
-
         // Checks if Bluetooth is supported on the device.
         if (bleAdapter == null) {
             Toast.makeText(activity, "R.string.error_bluetooth_not_supported", Toast.LENGTH_SHORT).show();
