@@ -35,11 +35,6 @@ import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.QRCodeScan
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.WiFiScanListener;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.DecodeCallback;
-//import com.espressif.provisioning.device_scanner.BleScanner;
-//import com.espressif.provisioning.device_scanner.WiFiScanner;
-//import com.espressif.provisioning.listeners.BleScanListener;
-//import com.espressif.provisioning.listeners.QRCodeScanListener;
-//import com.espressif.provisioning.listeners.WiFiScanListener;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;

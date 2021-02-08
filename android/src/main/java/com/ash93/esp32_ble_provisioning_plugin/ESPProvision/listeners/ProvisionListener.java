@@ -13,10 +13,6 @@
 // limitations under the License.
 
 package com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners;
-
-
-//import com.espressif.provisioning.ESPConstants;
-
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.ESPConstants;
 
 /**

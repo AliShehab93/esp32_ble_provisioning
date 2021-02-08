@@ -35,11 +35,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-//import com.espressif.provisioning.utils.HexEncoder;
-
-//import espressif.Sec1;
-//import espressif.Session;
-
 /**
  * Security 1 implementation of the handshake and encryption
  * protocols.
@@ -77,7 +72,6 @@ public class Security1 implements Security {
         byte[] request = null;
         switch (this.sessionState) {
             case SESSION_STATE_REQUEST1:
-                System.out.println("heerreee 1111");
                 this.sessionState = SESSION_STATE_RESPONSE1_REQUEST2;
                 request = this.getStep0Request();
                 break;
@@ -99,14 +93,11 @@ public class Security1 implements Security {
 
     private byte[] getStep0Request() {
         try {
-            System.out.println("heerreee 1111 ++++");
             this.generateKeyPair();
-            System.out.println("hereee Sec1.SessionCmd0 sessionCmd0");
             Sec1.SessionCmd0 sessionCmd0 = Sec1.SessionCmd0
                     .newBuilder()
                     .setClientPubkey(ByteString.copyFrom(this.publicKey))
                     .build();
-            System.out.println("end off Sec1.SessionCmd0 sessionCmd0");
             Sec1.Sec1Payload sec1Payload = Sec1.Sec1Payload
                     .newBuilder()
                     .setSc0(sessionCmd0)

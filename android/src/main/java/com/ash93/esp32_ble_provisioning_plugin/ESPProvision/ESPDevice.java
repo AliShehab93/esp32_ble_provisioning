@@ -34,14 +34,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
 
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.espressif.Constants;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.espressif.WifiConfig;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.espressif.WifiConstants;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.espressif.WifiScan;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.ProvisionListener;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.ResponseListener;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.WiFiScanListener;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.security.Security;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.security.Security0;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.security.Security1;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.transport.BLETransport;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.transport.SoftAPTransport;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.transport.Transport;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.utils.MessengeHelper;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
@@ -53,26 +59,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-//import com.espressif.provisioning.listeners.ProvisionListener;
-//import com.espressif.provisioning.listeners.ResponseListener;
-//import com.espressif.provisioning.listeners.WiFiScanListener;
-//import com.espressif.provisioning.security.Security;
-//import com.espressif.provisioning.security.Security0;
-//import com.espressif.provisioning.security.Security1;
-//import com.espressif.provisioning.transport.BLETransport;
-//import com.espressif.provisioning.transport.SoftAPTransport;
-//import com.espressif.provisioning.transport.Transport;
-//import com.espressif.provisioning.utils.MessengeHelper;
-//import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.espressif.WifiConfig;
-//import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.espressif.WifiConstants;
-//import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.espressif.WifiScan;
-//import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.security.Security0;
-//import android.src.main.java.com.ash93.esp32_ble_provisioning_plugin.ESPProvision.utils.MessengeHelper;
-//import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.utils.MessengeHelper;
-//import espressif.Constants;
-//import espressif.WifiConfig;
-//import espressif.WifiConstants;
-//import espressif.WifiScan;
+import static java.lang.Thread.sleep;
 
 /**
  * ESPDevice class to hold device information. This will give facility to connect device, send data to device and
@@ -459,37 +446,37 @@ public class ESPDevice {
         this.primaryServiceUuid = primaryServiceUuid;
     }
 
-//    /**
-//     * Send scan command to device to get available Wi-Fi access points.
-//     *
-//     * @param wifiScanListener WiFiScanListener to get callbacks of scanning networks.
-//     */
-//    public void scanNetworks(final WiFiScanListener wifiScanListener) {
-//
-//        Log.d(TAG, "Send Wi-Fi scan command to device");
-//        this.wifiScanListener = wifiScanListener;
-//
-//        if (session == null || !session.isEstablished()) {
-//
-//            initSession(new ResponseListener() {
-//
-//                @Override
-//                public void onSuccess(byte[] returnData) {
-//                    startNetworkScan();
-//                }
-//
-//                @Override
-//                public void onFailure(Exception e) {
-//                    e.printStackTrace();
-//                    if (wifiScanListener != null) {
-//                        wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to create session."));
-//                    }
-//                }
-//            });
-//        } else {
-//            startNetworkScan();
-//        }
-//    }
+    /**
+     * Send scan command to device to get available Wi-Fi access points.
+     *
+     * @param wifiScanListener WiFiScanListener to get callbacks of scanning networks.
+     */
+    public void scanNetworks(final WiFiScanListener wifiScanListener) {
+
+        Log.d(TAG, "Send Wi-Fi scan command to device");
+        this.wifiScanListener = wifiScanListener;
+
+        if (session == null || !session.isEstablished()) {
+
+            initSession(new ResponseListener() {
+
+                @Override
+                public void onSuccess(byte[] returnData) {
+                    startNetworkScan();
+                }
+
+                @Override
+                public void onFailure(Exception e) {
+                    e.printStackTrace();
+                    if (wifiScanListener != null) {
+                        wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to create session."));
+                    }
+                }
+            });
+        } else {
+            startNetworkScan();
+        }
+    }
 
     /**
      * Send data to custom endpoint of the device.
@@ -561,16 +548,10 @@ public class ESPDevice {
     private void initSession(final ResponseListener listener) {
 
         if (securityType.equals(ESPConstants.SecurityType.SECURITY_0)) {
-            System.out.println("fattt 0000  ");
-//            security = new Security0();
+            security = new Security0();
         } else {
-            System.out.println("fattt 1111  ");
             security = new Security1(proofOfPossession);
         }
-
-
-        System.out.println("swession isss createddd  ");
-        System.out.println(session);
 
         session = new Session(transport, security);
 
@@ -609,258 +590,258 @@ public class ESPDevice {
         });
     }
 
-//    private void startNetworkScan() {
+    private void startNetworkScan() {
 
-//        totalCount = 0;
-//        startIndex = 0;
-//        wifiApList = new ArrayList<>();
-//        byte[] scanCommand = MessengeHelper.prepareWiFiScanMsg();
-//
-//        session.sendDataToDevice(ESPConstants.HANDLER_PROV_SCAN, scanCommand, new ResponseListener() {
-//
-//            @Override
-//            public void onSuccess(byte[] returnData) {
-//
-//                processStartScanResponse(returnData);
-//
-//                byte[] getScanStatusCmd = MessengeHelper.prepareGetWiFiScanStatusMsg();
-//                session.sendDataToDevice(ESPConstants.HANDLER_PROV_SCAN, getScanStatusCmd, new ResponseListener() {
-//
-//                    @Override
-//                    public void onSuccess(byte[] returnData) {
-//                        processWifiStatusResponse(returnData);
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Exception e) {
-//                        e.printStackTrace();
-//                        if (wifiScanListener != null) {
-//                            wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to send Wi-Fi scan command."));
-//                        }
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onFailure(Exception e) {
-//                e.printStackTrace();
-//                if (wifiScanListener != null) {
-//                    wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to send Wi-Fi scan command."));
-//                }
-//            }
-//        });
-//    }
+        totalCount = 0;
+        startIndex = 0;
+        wifiApList = new ArrayList<>();
+        byte[] scanCommand = MessengeHelper.prepareWiFiScanMsg();
 
-//    private void getFullWiFiList() {
-//
-//        Log.e(TAG, "Total count : " + totalCount + " and start index is : " + startIndex);
-//
-//        if (totalCount < 4) {
-//
-//            getWiFiScanList(0, totalCount);
-//
-//        } else {
-//
-//            int temp = totalCount - startIndex;
-//
-//            if (temp > 0) {
-//
-//                if (temp > 4) {
-//                    getWiFiScanList(startIndex, 4);
-//                } else {
-//                    getWiFiScanList(startIndex, temp);
-//                }
-//
-//            } else {
-//                Log.d(TAG, "Nothing to do. Wifi list completed.");
-//                completeWifiList();
-//            }
-//        }
-//    }
+        session.sendDataToDevice(ESPConstants.HANDLER_PROV_SCAN, scanCommand, new ResponseListener() {
 
-//    private void getWiFiScanList(int start, int count) {
-//
-//        Log.d(TAG, "Getting " + count + " SSIDs");
-//
-//        if (count <= 0) {
-//            completeWifiList();
-//            return;
-//        }
-//
-//        byte[] data = MessengeHelper.prepareGetWiFiScanListMsg(start, count);
-//        session.sendDataToDevice(ESPConstants.HANDLER_PROV_SCAN, data, new ResponseListener() {
-//
-//            @Override
-//            public void onSuccess(byte[] returnData) {
-//                Log.d(TAG, "Successfully got SSID list");
-//                processGetSSIDs(returnData);
-//            }
-//
-//            @Override
-//            public void onFailure(Exception e) {
-//                e.printStackTrace();
-//                if (wifiScanListener != null) {
-//                    wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to get Wi-Fi Networks."));
-//                }
-//            }
-//        });
-//    }
+            @Override
+            public void onSuccess(byte[] returnData) {
 
-//    private void completeWifiList() {
-//
-//        if (wifiScanListener != null) {
-//            wifiScanListener.onWifiListReceived(wifiApList);
-//        }
-//    }
+                processStartScanResponse(returnData);
+
+                byte[] getScanStatusCmd = MessengeHelper.prepareGetWiFiScanStatusMsg();
+                session.sendDataToDevice(ESPConstants.HANDLER_PROV_SCAN, getScanStatusCmd, new ResponseListener() {
+
+                    @Override
+                    public void onSuccess(byte[] returnData) {
+                        processWifiStatusResponse(returnData);
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        e.printStackTrace();
+                        if (wifiScanListener != null) {
+                            wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to send Wi-Fi scan command."));
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                e.printStackTrace();
+                if (wifiScanListener != null) {
+                    wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to send Wi-Fi scan command."));
+                }
+            }
+        });
+    }
+
+    private void getFullWiFiList() {
+
+        Log.e(TAG, "Total count : " + totalCount + " and start index is : " + startIndex);
+
+        if (totalCount < 4) {
+
+            getWiFiScanList(0, totalCount);
+
+        } else {
+
+            int temp = totalCount - startIndex;
+
+            if (temp > 0) {
+
+                if (temp > 4) {
+                    getWiFiScanList(startIndex, 4);
+                } else {
+                    getWiFiScanList(startIndex, temp);
+                }
+
+            } else {
+                Log.d(TAG, "Nothing to do. Wifi list completed.");
+                completeWifiList();
+            }
+        }
+    }
+
+    private void getWiFiScanList(int start, int count) {
+
+        Log.d(TAG, "Getting " + count + " SSIDs");
+
+        if (count <= 0) {
+            completeWifiList();
+            return;
+        }
+
+        byte[] data = MessengeHelper.prepareGetWiFiScanListMsg(start, count);
+        session.sendDataToDevice(ESPConstants.HANDLER_PROV_SCAN, data, new ResponseListener() {
+
+            @Override
+            public void onSuccess(byte[] returnData) {
+                Log.d(TAG, "Successfully got SSID list");
+                processGetSSIDs(returnData);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                e.printStackTrace();
+                if (wifiScanListener != null) {
+                    wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to get Wi-Fi Networks."));
+                }
+            }
+        });
+    }
+
+    private void completeWifiList() {
+
+        if (wifiScanListener != null) {
+            wifiScanListener.onWifiListReceived(wifiApList);
+        }
+    }
 
     private void sendWiFiConfig(final String ssid, final String passphrase, final ProvisionListener provisionListener) {
 
-//        byte[] scanCommand = MessengeHelper.prepareWiFiConfigMsg(ssid, passphrase);
-//
-//        session.sendDataToDevice(ESPConstants.HANDLER_PROV_CONFIG, scanCommand, new ResponseListener() {
-//
-//            @Override
-//            public void onSuccess(byte[] returnData) {
-//
-//                Constants.Status status = processWifiConfigResponse(returnData);
-//                if (provisionListener != null) {
-//                    if (status != Constants.Status.Success) {
-//                        provisionListener.wifiConfigFailed(new RuntimeException("Failed to send wifi credentials to device"));
-//                    } else {
-//                        provisionListener.wifiConfigSent();
-//                    }
-//                }
-//
-//                if (status == Constants.Status.Success) {
-//                    applyWiFiConfig();
-//                } else {
-//                    disableOnlyWifiNetwork();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Exception e) {
-//                e.printStackTrace();
-//                disableOnlyWifiNetwork();
-//                if (provisionListener != null) {
-//                    provisionListener.wifiConfigFailed(new RuntimeException("Failed to send wifi credentials to device"));
-//                }
-//            }
-//        });
+        byte[] scanCommand = MessengeHelper.prepareWiFiConfigMsg(ssid, passphrase);
+
+        session.sendDataToDevice(ESPConstants.HANDLER_PROV_CONFIG, scanCommand, new ResponseListener() {
+
+            @Override
+            public void onSuccess(byte[] returnData) {
+
+                Constants.Status status = processWifiConfigResponse(returnData);
+                if (provisionListener != null) {
+                    if (status != Constants.Status.Success) {
+                        provisionListener.wifiConfigFailed(new RuntimeException("Failed to send wifi credentials to device"));
+                    } else {
+                        provisionListener.wifiConfigSent();
+                    }
+                }
+
+                if (status == Constants.Status.Success) {
+                    applyWiFiConfig();
+                } else {
+                    disableOnlyWifiNetwork();
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                e.printStackTrace();
+                disableOnlyWifiNetwork();
+                if (provisionListener != null) {
+                    provisionListener.wifiConfigFailed(new RuntimeException("Failed to send wifi credentials to device"));
+                }
+            }
+        });
     }
 
     private void applyWiFiConfig() {
 
-//        byte[] scanCommand = MessengeHelper.prepareApplyWiFiConfigMsg();
-//
-//        session.sendDataToDevice(ESPConstants.HANDLER_PROV_CONFIG, scanCommand, new ResponseListener() {
-//
-//            @Override
-//            public void onSuccess(byte[] returnData) {
-//
-//                Constants.Status status = processApplyConfigResponse(returnData);
-//
-//                if (status == Constants.Status.Success) {
-//                    if (provisionListener != null) {
-//                        provisionListener.wifiConfigApplied();
-//                    }
-//
-//                    try {
-//                        Thread.sleep(2000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    pollForWifiConnectionStatus();
-//                } else {
-//                    disableOnlyWifiNetwork();
-//                    if (provisionListener != null) {
-//                        provisionListener.wifiConfigApplyFailed(new RuntimeException("Failed to apply wifi credentials"));
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Exception e) {
-//                e.printStackTrace();
-//                disableOnlyWifiNetwork();
-//                if (provisionListener != null) {
-//                    provisionListener.wifiConfigApplyFailed(new RuntimeException("Failed to apply wifi credentials"));
-//                }
-//            }
-//        });
+        byte[] scanCommand = MessengeHelper.prepareApplyWiFiConfigMsg();
+
+        session.sendDataToDevice(ESPConstants.HANDLER_PROV_CONFIG, scanCommand, new ResponseListener() {
+
+            @Override
+            public void onSuccess(byte[] returnData) {
+
+                Constants.Status status = processApplyConfigResponse(returnData);
+
+                if (status == Constants.Status.Success) {
+                    if (provisionListener != null) {
+                        provisionListener.wifiConfigApplied();
+                    }
+
+                    try {
+                        sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    pollForWifiConnectionStatus();
+                } else {
+                    disableOnlyWifiNetwork();
+                    if (provisionListener != null) {
+                        provisionListener.wifiConfigApplyFailed(new RuntimeException("Failed to apply wifi credentials"));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                e.printStackTrace();
+                disableOnlyWifiNetwork();
+                if (provisionListener != null) {
+                    provisionListener.wifiConfigApplyFailed(new RuntimeException("Failed to apply wifi credentials"));
+                }
+            }
+        });
     }
 
     private void pollForWifiConnectionStatus() {
 
-//        byte[] message = MessengeHelper.prepareGetWiFiConfigStatusMsg();
-//        session.sendDataToDevice(ESPConstants.HANDLER_PROV_CONFIG, message, new ResponseListener() {
-//
-//            @Override
-//            public void onSuccess(byte[] returnData) {
-//
-//                Object[] statuses = processProvisioningStatusResponse(returnData);
-//                WifiConstants.WifiStationState wifiStationState = (WifiConstants.WifiStationState) statuses[0];
-//                WifiConstants.WifiConnectFailedReason failedReason = (WifiConstants.WifiConnectFailedReason) statuses[1];
-//
-//                if (wifiStationState == WifiConstants.WifiStationState.Connected) {
-//
-//                    // Provision success
-//                    if (provisionListener != null) {
-//                        provisionListener.deviceProvisioningSuccess();
-//                    }
-//                    session = null;
-//                    disableOnlyWifiNetwork();
-//
-//                } else if (wifiStationState == WifiConstants.WifiStationState.Disconnected) {
-//
-//                    // Device disconnected but Provision may got success / failure
-//                    if (provisionListener != null) {
-//                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.DEVICE_DISCONNECTED);
-//                    }
-//                    session = null;
-//                    disableOnlyWifiNetwork();
-//
-//                } else if (wifiStationState == WifiConstants.WifiStationState.Connecting) {
-//
-//                    try {
-//                        sleep(5000);
-//                        pollForWifiConnectionStatus();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                        session = null;
-//                        disableOnlyWifiNetwork();
-//                        provisionListener.onProvisioningFailed(new RuntimeException("Provisioning Failed"));
-//                    }
-//                } else {
-//
-//                    if (failedReason == WifiConstants.WifiConnectFailedReason.AuthError) {
-//
-//                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.AUTH_FAILED);
-//
-//                    } else if (failedReason == WifiConstants.WifiConnectFailedReason.NetworkNotFound) {
-//
-//                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.NETWORK_NOT_FOUND);
-//
-//                    } else {
-//                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.UNKNOWN);
-//                    }
-//                    session = null;
-//                    disableOnlyWifiNetwork();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Exception e) {
-//                e.printStackTrace();
-//                disableOnlyWifiNetwork();
-//                provisionListener.onProvisioningFailed(new RuntimeException("Provisioning Failed"));
-//            }
-//        });
+        byte[] message = MessengeHelper.prepareGetWiFiConfigStatusMsg();
+        session.sendDataToDevice(ESPConstants.HANDLER_PROV_CONFIG, message, new ResponseListener() {
+
+            @Override
+            public void onSuccess(byte[] returnData) {
+
+                Object[] statuses = processProvisioningStatusResponse(returnData);
+                WifiConstants.WifiStationState wifiStationState = (WifiConstants.WifiStationState) statuses[0];
+                WifiConstants.WifiConnectFailedReason failedReason = (WifiConstants.WifiConnectFailedReason) statuses[1];
+
+                if (wifiStationState == WifiConstants.WifiStationState.Connected) {
+
+                    // Provision success
+                    if (provisionListener != null) {
+                        provisionListener.deviceProvisioningSuccess();
+                    }
+                    session = null;
+                    disableOnlyWifiNetwork();
+
+                } else if (wifiStationState == WifiConstants.WifiStationState.Disconnected) {
+
+                    // Device disconnected but Provision may got success / failure
+                    if (provisionListener != null) {
+                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.DEVICE_DISCONNECTED);
+                    }
+                    session = null;
+                    disableOnlyWifiNetwork();
+
+                } else if (wifiStationState == WifiConstants.WifiStationState.Connecting) {
+
+                    try {
+                        sleep(5000);
+                        pollForWifiConnectionStatus();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        session = null;
+                        disableOnlyWifiNetwork();
+                        provisionListener.onProvisioningFailed(new RuntimeException("Provisioning Failed"));
+                    }
+                } else {
+
+                    if (failedReason == WifiConstants.WifiConnectFailedReason.AuthError) {
+
+                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.AUTH_FAILED);
+
+                    } else if (failedReason == WifiConstants.WifiConnectFailedReason.NetworkNotFound) {
+
+                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.NETWORK_NOT_FOUND);
+
+                    } else {
+                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.UNKNOWN);
+                    }
+                    session = null;
+                    disableOnlyWifiNetwork();
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                e.printStackTrace();
+                disableOnlyWifiNetwork();
+                provisionListener.onProvisioningFailed(new RuntimeException("Provisioning Failed"));
+            }
+        });
     }
 
     private void processStartScanResponse(byte[] responseData) {
 
-        /*Log.d(TAG, "Process Wi-Fi start scan command response");
+        Log.d(TAG, "Process Wi-Fi start scan command response");
 
         try {
             WifiScan.WiFiScanPayload payload = WifiScan.WiFiScanPayload.parseFrom(responseData);
@@ -868,136 +849,133 @@ public class ESPDevice {
             // TODO Proto should send status as ok started or failed
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     private void processWifiStatusResponse(byte[] responseData) {
 //
-//        Log.d(TAG, "Process Wi-Fi scan status command response");
-//        try {
-//            WifiScan.WiFiScanPayload payload = WifiScan.WiFiScanPayload.parseFrom(responseData);
-//            WifiScan.RespScanStatus response = payload.getRespScanStatus();
-//            boolean scanFinished = response.getScanFinished();
-//
-//            if (scanFinished) {
-//                totalCount = response.getResultCount();
-//                getFullWiFiList();
-//            } else {
-//                // TODO Error case
-//            }
-//
-//        } catch (InvalidProtocolBufferException e) {
-//
-//            e.printStackTrace();
-//            if (wifiScanListener != null) {
-//                wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to get Wi-Fi status."));
-//            }
-//        }
+        Log.d(TAG, "Process Wi-Fi scan status command response");
+        try {
+            WifiScan.WiFiScanPayload payload = WifiScan.WiFiScanPayload.parseFrom(responseData);
+            WifiScan.RespScanStatus response = payload.getRespScanStatus();
+            boolean scanFinished = response.getScanFinished();
+
+            if (scanFinished) {
+                totalCount = response.getResultCount();
+                getFullWiFiList();
+            } else {
+                // TODO Error case
+            }
+
+        } catch (InvalidProtocolBufferException e) {
+
+            e.printStackTrace();
+            if (wifiScanListener != null) {
+                wifiScanListener.onWiFiScanFailed(new RuntimeException("Failed to get Wi-Fi status."));
+            }
+        }
     }
 
-//    private void processGetSSIDs(byte[] responseData) {
-//
-//        try {
-//            WifiScan.WiFiScanPayload payload = WifiScan.WiFiScanPayload.parseFrom(responseData);
-//            final WifiScan.RespScanResult response = payload.getRespScanResult();
-//
-//            Log.e(TAG, "Response count : " + response.getEntriesCount());
-//
-//            for (int i = 0; i < response.getEntriesCount(); i++) {
-//
-//                Log.e(TAG, "SSID : " + response.getEntries(i).getSsid().toStringUtf8());
-//                String ssid = response.getEntries(i).getSsid().toStringUtf8();
-//                int rssi = response.getEntries(i).getRssi();
-//                boolean isAvailable = false;
-//
-//                for (int index = 0; index < wifiApList.size(); index++) {
-//
-//                    if (ssid.equals(wifiApList.get(index).getWifiName())) {
-//
-//                        isAvailable = true;
-//
-//                        if (wifiApList.get(index).getRssi() < rssi) {
-//
-//                            wifiApList.get(index).setRssi(rssi);
-//                        }
-//                        break;
-//                    }
-//                }
-//
-//                if (!isAvailable) {
-//
-//                    WiFiAccessPoint wifiAp = new WiFiAccessPoint();
-//                    wifiAp.setWifiName(ssid);
-//                    wifiAp.setRssi(response.getEntries(i).getRssi());
-//                    wifiAp.setSecurity(response.getEntries(i).getAuthValue());
-//                    wifiApList.add(wifiAp);
-//                }
-//
-//                Log.e(TAG, "Size of  list : " + wifiApList.size());
-//            }
-//
-//            startIndex = startIndex + 4;
-//
-//            int temp = totalCount - startIndex;
-//
-//            if (temp > 0) {
-//
-//                getFullWiFiList();
-//
-//            } else {
-//
-//                Log.e(TAG, "Wi-Fi LIST Completed");
-//                completeWifiList();
-//            }
-//        } catch (InvalidProtocolBufferException e) {
-//
-//            e.printStackTrace();
-//        }
-//    }
+    private void processGetSSIDs(byte[] responseData) {
+
+        try {
+            WifiScan.WiFiScanPayload payload = WifiScan.WiFiScanPayload.parseFrom(responseData);
+            final WifiScan.RespScanResult response = payload.getRespScanResult();
+
+            Log.e(TAG, "Response count : " + response.getEntriesCount());
+
+            for (int i = 0; i < response.getEntriesCount(); i++) {
+
+                Log.e(TAG, "SSID : " + response.getEntries(i).getSsid().toStringUtf8());
+                String ssid = response.getEntries(i).getSsid().toStringUtf8();
+                int rssi = response.getEntries(i).getRssi();
+                boolean isAvailable = false;
+
+                for (int index = 0; index < wifiApList.size(); index++) {
+
+                    if (ssid.equals(wifiApList.get(index).getWifiName())) {
+
+                        isAvailable = true;
+
+                        if (wifiApList.get(index).getRssi() < rssi) {
+
+                            wifiApList.get(index).setRssi(rssi);
+                        }
+                        break;
+                    }
+                }
+
+                if (!isAvailable) {
+
+                    WiFiAccessPoint wifiAp = new WiFiAccessPoint();
+                    wifiAp.setWifiName(ssid);
+                    wifiAp.setRssi(response.getEntries(i).getRssi());
+                    wifiAp.setSecurity(response.getEntries(i).getAuthValue());
+                    wifiApList.add(wifiAp);
+                }
+
+                Log.e(TAG, "Size of  list : " + wifiApList.size());
+            }
+
+            startIndex = startIndex + 4;
+
+            int temp = totalCount - startIndex;
+
+            if (temp > 0) {
+
+                getFullWiFiList();
+
+            } else {
+
+                Log.e(TAG, "Wi-Fi LIST Completed");
+                completeWifiList();
+            }
+        } catch (InvalidProtocolBufferException e) {
+
+            e.printStackTrace();
+        }
+    }
 
     private Constants.Status processWifiConfigResponse(byte[] responseData) {
 
-//        Constants.Status status = Constants.Status.InvalidSession;
-//        try {
-//            WifiConfig.WiFiConfigPayload wiFiConfigPayload = WifiConfig.WiFiConfigPayload.parseFrom(responseData);
-//            status = wiFiConfigPayload.getRespSetConfig().getStatus();
-//        } catch (InvalidProtocolBufferException e) {
-//            e.printStackTrace();
-//        }
-//        return status;
-        return null;
+        Constants.Status status = Constants.Status.InvalidSession;
+        try {
+            WifiConfig.WiFiConfigPayload wiFiConfigPayload = WifiConfig.WiFiConfigPayload.parseFrom(responseData);
+            status = wiFiConfigPayload.getRespSetConfig().getStatus();
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 
     private Constants.Status processApplyConfigResponse(byte[] responseData) {
-//        Constants.Status status = Constants.Status.InvalidSession;
-//        try {
-//            WifiConfig.WiFiConfigPayload wiFiConfigPayload = WifiConfig.WiFiConfigPayload.parseFrom(responseData);
-//            status = wiFiConfigPayload.getRespApplyConfig().getStatus();
-//        } catch (InvalidProtocolBufferException e) {
-//            e.printStackTrace();
-//        }
-//        return status;
-        return null;
+        Constants.Status status = Constants.Status.InvalidSession;
+        try {
+            WifiConfig.WiFiConfigPayload wiFiConfigPayload = WifiConfig.WiFiConfigPayload.parseFrom(responseData);
+            status = wiFiConfigPayload.getRespApplyConfig().getStatus();
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 
     private Object[] processProvisioningStatusResponse(byte[] responseData) {
 
-//        WifiConstants.WifiStationState wifiStationState = WifiConstants.WifiStationState.Disconnected;
-//        WifiConstants.WifiConnectFailedReason failedReason = WifiConstants.WifiConnectFailedReason.UNRECOGNIZED;
-//
-//        if (responseData == null) {
-//            return new Object[]{wifiStationState, failedReason};
-//        }
-//
-//        try {
-//            WifiConfig.WiFiConfigPayload wiFiConfigPayload = WifiConfig.WiFiConfigPayload.parseFrom(responseData);
-//            wifiStationState = wiFiConfigPayload.getRespGetStatus().getStaState();
-//            failedReason = wiFiConfigPayload.getRespGetStatus().getFailReason();
-//        } catch (InvalidProtocolBufferException e) {
-//            e.printStackTrace();
-//        }
-//        return new Object[]{wifiStationState, failedReason};
-        return null;
+        WifiConstants.WifiStationState wifiStationState = WifiConstants.WifiStationState.Disconnected;
+        WifiConstants.WifiConnectFailedReason failedReason = WifiConstants.WifiConnectFailedReason.UNRECOGNIZED;
+
+        if (responseData == null) {
+            return new Object[]{wifiStationState, failedReason};
+        }
+
+        try {
+            WifiConfig.WiFiConfigPayload wiFiConfigPayload = WifiConfig.WiFiConfigPayload.parseFrom(responseData);
+            wifiStationState = wiFiConfigPayload.getRespGetStatus().getStaState();
+            failedReason = wiFiConfigPayload.getRespGetStatus().getFailReason();
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return new Object[]{wifiStationState, failedReason};
     }
 
     private int deviceConnectionReqCount = 0;
@@ -1180,7 +1158,7 @@ public class ESPDevice {
             if (!TextUtils.isEmpty(ssid) && !TextUtils.isEmpty(networkName) && ssid.equals(networkName)) {
 
                 try {
-                    Thread.sleep(2500);
+                    sleep(2500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

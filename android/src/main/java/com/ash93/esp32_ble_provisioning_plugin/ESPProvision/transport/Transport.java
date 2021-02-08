@@ -12,10 +12,6 @@ package com.ash93.esp32_ble_provisioning_plugin.ESPProvision.transport;// Copyri
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-
-//import com.espressif.provisioning.listeners.ResponseListener;
-
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.ResponseListener;
 
 /**

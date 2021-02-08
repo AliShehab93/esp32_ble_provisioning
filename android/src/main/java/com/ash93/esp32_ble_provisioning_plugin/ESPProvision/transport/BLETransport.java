@@ -25,10 +25,6 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
-//import com.espressif.provisioning.DeviceConnectionEvent;
-//import com.espressif.provisioning.ESPConstants;
-//import com.espressif.provisioning.listeners.ResponseListener;
-
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.DeviceConnectionEvent;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.ESPConstants;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.ResponseListener;

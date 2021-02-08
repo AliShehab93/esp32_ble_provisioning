@@ -13,9 +13,6 @@
 // limitations under the License.
 
 package com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners;
-
-//import com.espressif.provisioning.ESPDevice;
-
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.ESPDevice;
 
 /**

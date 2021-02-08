@@ -14,8 +14,6 @@
 
 package com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners;
 
-//import com.espressif.provisioning.WiFiAccessPoint;
-
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.WiFiAccessPoint;
 
 import java.util.ArrayList;

@@ -13,10 +13,6 @@
 // limitations under the License.
 
 package com.ash93.esp32_ble_provisioning_plugin.ESPProvision;
-//import com.espressif.provisioning.listeners.ResponseListener;
-//import com.espressif.provisioning.security.Security;
-//import com.espressif.provisioning.transport.Transport;
-
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.ResponseListener;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.security.Security;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.transport.Transport;
