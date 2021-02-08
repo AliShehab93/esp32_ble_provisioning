@@ -51,14 +51,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
-
-import com.espressif.provisioning.ESPDevice;
-import com.espressif.provisioning.listeners.ProvisionListener;
-
-import com.espressif.provisioning.DeviceConnectionEvent;
-import com.espressif.provisioning.ESPConstants;
-import com.espressif.provisioning.ESPProvisionManager;
-import com.espressif.provisioning.listeners.BleScanListener;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.DeviceConnectionEvent;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.ESPConstants;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.ESPDevice;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.ESPProvisionManager;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.BleScanListener;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.listeners.ProvisionListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
