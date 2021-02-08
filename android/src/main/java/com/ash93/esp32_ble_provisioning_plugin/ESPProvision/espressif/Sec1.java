@@ -138,14 +138,14 @@ public final class Sec1 {
       if (value == null) {
     throw new NullPointerException();
   }
-  
+
       clientVerifyData_ = value;
     }
     /**
      * <code>optional bytes client_verify_data = 2;</code>
      */
     private void clearClientVerifyData() {
-      
+
       clientVerifyData_ = getDefaultInstance().getClientVerifyData();
     }
 
@@ -279,77 +279,80 @@ public final class Sec1 {
     protected final Object dynamicMethod(
         GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new Sec1.SessionCmd1();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          Sec1.SessionCmd1 other = (Sec1.SessionCmd1) arg1;
-          clientVerifyData_ = visitor.visitByteString(clientVerifyData_ != ByteString.EMPTY, clientVerifyData_,
-              other.clientVerifyData_ != ByteString.EMPTY, other.clientVerifyData_);
-          if (visitor == GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          CodedInputStream input =
-              (CodedInputStream) arg0;
-          ExtensionRegistryLite extensionRegistry =
-              (ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 18: {
+      System.out.println("methoddd 11111 iss: ");
+      System.out.println(method);
 
-                  clientVerifyData_ = input.readBytes();
-                  break;
-                }
-              }
-            }
-          } catch (InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Sec1.SessionCmd1.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
+//      switch (method) {
+//        case NEW_MUTABLE_INSTANCE: {
+//          return new Sec1.SessionCmd1();
+//        }
+//        case IS_INITIALIZED: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case MAKE_IMMUTABLE: {
+//          return null;
+//        }
+//        case NEW_BUILDER: {
+//          return new Builder();
+//        }
+//        case VISIT: {
+//          Visitor visitor = (Visitor) arg0;
+//          Sec1.SessionCmd1 other = (Sec1.SessionCmd1) arg1;
+//          clientVerifyData_ = visitor.visitByteString(clientVerifyData_ != ByteString.EMPTY, clientVerifyData_,
+//              other.clientVerifyData_ != ByteString.EMPTY, other.clientVerifyData_);
+//          if (visitor == GeneratedMessageLite.MergeFromVisitor
+//              .INSTANCE) {
+//          }
+//          return this;
+//        }
+//        case MERGE_FROM_STREAM: {
+//          CodedInputStream input =
+//              (CodedInputStream) arg0;
+//          ExtensionRegistryLite extensionRegistry =
+//              (ExtensionRegistryLite) arg1;
+//          try {
+//            boolean done = false;
+//            while (!done) {
+//              int tag = input.readTag();
+//              switch (tag) {
+//                case 0:
+//                  done = true;
+//                  break;
+//                default: {
+//                  if (!input.skipField(tag)) {
+//                    done = true;
+//                  }
+//                  break;
+//                }
+//                case 18: {
+//
+//                  clientVerifyData_ = input.readBytes();
+//                  break;
+//                }
+//              }
+//            }
+//          } catch (InvalidProtocolBufferException e) {
+//            throw new RuntimeException(e.setUnfinishedMessage(this));
+//          } catch (java.io.IOException e) {
+//            throw new RuntimeException(
+//                new InvalidProtocolBufferException(
+//                    e.getMessage()).setUnfinishedMessage(this));
+//          } finally {
+//          }
+//        }
+//        case GET_DEFAULT_INSTANCE: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case GET_PARSER: {
+//          if (PARSER == null) {    synchronized (Sec1.SessionCmd1.class) {
+//              if (PARSER == null) {
+//                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+//              }
+//            }
+//          }
+//          return PARSER;
+//        }
+//      }
       throw new UnsupportedOperationException();
     }
 
@@ -429,14 +432,14 @@ public final class Sec1 {
       if (value == null) {
         throw new NullPointerException();
       }
-      
+
       status_ = value.getNumber();
     }
     /**
      * <code>optional .Status status = 1;</code>
      */
     private void clearStatus() {
-      
+
       status_ = 0;
     }
 
@@ -455,14 +458,14 @@ public final class Sec1 {
       if (value == null) {
     throw new NullPointerException();
   }
-  
+
       deviceVerifyData_ = value;
     }
     /**
      * <code>optional bytes device_verify_data = 3;</code>
      */
     private void clearDeviceVerifyData() {
-      
+
       deviceVerifyData_ = getDefaultInstance().getDeviceVerifyData();
     }
 
@@ -640,84 +643,87 @@ public final class Sec1 {
     protected final Object dynamicMethod(
         GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new Sec1.SessionResp1();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          Sec1.SessionResp1 other = (Sec1.SessionResp1) arg1;
-          status_ = visitor.visitInt(status_ != 0, status_,    other.status_ != 0, other.status_);
-          deviceVerifyData_ = visitor.visitByteString(deviceVerifyData_ != ByteString.EMPTY, deviceVerifyData_,
-              other.deviceVerifyData_ != ByteString.EMPTY, other.deviceVerifyData_);
-          if (visitor == GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          CodedInputStream input =
-              (CodedInputStream) arg0;
-          ExtensionRegistryLite extensionRegistry =
-              (ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 8: {
-                  int rawValue = input.readEnum();
+      System.out.println("methoddd 22222 iss: ");
+      System.out.println(method);
 
-                  status_ = rawValue;
-                  break;
-                }
-                case 26: {
-
-                  deviceVerifyData_ = input.readBytes();
-                  break;
-                }
-              }
-            }
-          } catch (InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Sec1.SessionResp1.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
+//      switch (method) {
+//        case NEW_MUTABLE_INSTANCE: {
+//          return new Sec1.SessionResp1();
+//        }
+//        case IS_INITIALIZED: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case MAKE_IMMUTABLE: {
+//          return null;
+//        }
+//        case NEW_BUILDER: {
+//          return new Builder();
+//        }
+//        case VISIT: {
+//          Visitor visitor = (Visitor) arg0;
+//          Sec1.SessionResp1 other = (Sec1.SessionResp1) arg1;
+//          status_ = visitor.visitInt(status_ != 0, status_,    other.status_ != 0, other.status_);
+//          deviceVerifyData_ = visitor.visitByteString(deviceVerifyData_ != ByteString.EMPTY, deviceVerifyData_,
+//              other.deviceVerifyData_ != ByteString.EMPTY, other.deviceVerifyData_);
+//          if (visitor == GeneratedMessageLite.MergeFromVisitor
+//              .INSTANCE) {
+//          }
+//          return this;
+//        }
+//        case MERGE_FROM_STREAM: {
+//          CodedInputStream input =
+//              (CodedInputStream) arg0;
+//          ExtensionRegistryLite extensionRegistry =
+//              (ExtensionRegistryLite) arg1;
+//          try {
+//            boolean done = false;
+//            while (!done) {
+//              int tag = input.readTag();
+//              switch (tag) {
+//                case 0:
+//                  done = true;
+//                  break;
+//                default: {
+//                  if (!input.skipField(tag)) {
+//                    done = true;
+//                  }
+//                  break;
+//                }
+//                case 8: {
+//                  int rawValue = input.readEnum();
+//
+//                  status_ = rawValue;
+//                  break;
+//                }
+//                case 26: {
+//
+//                  deviceVerifyData_ = input.readBytes();
+//                  break;
+//                }
+//              }
+//            }
+//          } catch (InvalidProtocolBufferException e) {
+//            throw new RuntimeException(e.setUnfinishedMessage(this));
+//          } catch (java.io.IOException e) {
+//            throw new RuntimeException(
+//                new InvalidProtocolBufferException(
+//                    e.getMessage()).setUnfinishedMessage(this));
+//          } finally {
+//          }
+//        }
+//        case GET_DEFAULT_INSTANCE: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case GET_PARSER: {
+//          if (PARSER == null) {    synchronized (Sec1.SessionResp1.class) {
+//              if (PARSER == null) {
+//                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+//              }
+//            }
+//          }
+//          return PARSER;
+//        }
+//      }
       throw new UnsupportedOperationException();
     }
 
@@ -775,14 +781,14 @@ public final class Sec1 {
       if (value == null) {
     throw new NullPointerException();
   }
-  
+
       clientPubkey_ = value;
     }
     /**
      * <code>optional bytes client_pubkey = 1;</code>
      */
     private void clearClientPubkey() {
-      
+
       clientPubkey_ = getDefaultInstance().getClientPubkey();
     }
 
@@ -916,34 +922,54 @@ public final class Sec1 {
     protected final Object dynamicMethod(
         GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new Sec1.SessionCmd0();
-        }
+      System.out.println("methoddd 33333 iss: ");
+      System.out.println(method);
+
+      /*public static enum MethodToInvoke {
+        // Rely on/modify instance state
+        IS_INITIALIZED,
+        VISIT,
+        MERGE_FROM_STREAM,
+        MAKE_IMMUTABLE,
+
+        // Rely on static state
+        NEW_MUTABLE_INSTANCE,
+        NEW_BUILDER,
+        GET_DEFAULT_INSTANCE,
+        GET_PARSER;
+      }
+
+      public static enum MethodToInvoke {
+        // Rely on/modify instance state
+        GET_MEMOIZED_IS_INITIALIZED,
+        SET_MEMOIZED_IS_INITIALIZED,
+
+        // Rely on static state
+        BUILD_MESSAGE_INFO,
+        NEW_MUTABLE_INSTANCE,
+        NEW_BUILDER,
+        GET_DEFAULT_INSTANCE,
+        GET_PARSER;
+      }*/
+      /*switch (method) {
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
+        }//6th
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           Sec1.SessionCmd0 other = (Sec1.SessionCmd0) arg1;
           clientPubkey_ = visitor.visitByteString(clientPubkey_ != ByteString.EMPTY, clientPubkey_,
-              other.clientPubkey_ != ByteString.EMPTY, other.clientPubkey_);
+                  other.clientPubkey_ != ByteString.EMPTY, other.clientPubkey_);
           if (visitor == GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
+                  .INSTANCE) {
           }
           return this;
-        }
+        }//4th
         case MERGE_FROM_STREAM: {
           CodedInputStream input =
-              (CodedInputStream) arg0;
+                  (CodedInputStream) arg0;
           ExtensionRegistryLite extensionRegistry =
-              (ExtensionRegistryLite) arg1;
+                  (ExtensionRegistryLite) arg1;
           try {
             boolean done = false;
             while (!done) {
@@ -969,11 +995,101 @@ public final class Sec1 {
             throw new RuntimeException(e.setUnfinishedMessage(this));
           } catch (java.io.IOException e) {
             throw new RuntimeException(
-                new InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
+                    new InvalidProtocolBufferException(
+                            e.getMessage()).setUnfinishedMessage(this));
           } finally {
           }
         }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }//1st//5th
+
+        case NEW_MUTABLE_INSTANCE: {
+          return new Sec1.SessionCmd0();
+        }//3rd
+        case NEW_BUILDER: {
+          return new Builder();
+        }//2nd
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (Sec1.SessionCmd0.class) {
+            if (PARSER == null) {
+              PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+            }
+          }
+          }
+          return PARSER;
+        }
+      }*/
+
+      switch (method) {
+        case GET_MEMOIZED_IS_INITIALIZED: {
+          System.out.println("fatt GET_MEMOIZED_IS_INITIALIZED");
+
+          return DEFAULT_INSTANCE;
+        }//6th
+        case SET_MEMOIZED_IS_INITIALIZED: {
+          System.out.println("fatt SET_MEMOIZED_IS_INITIALIZED");
+//          Visitor visitor = (Visitor) arg0;
+//          Sec1.SessionCmd0 other = (Sec1.SessionCmd0) arg1;
+//          clientPubkey_ = visitor.visitByteString(clientPubkey_ != ByteString.EMPTY, clientPubkey_,
+//                  other.clientPubkey_ != ByteString.EMPTY, other.clientPubkey_);
+//          if (visitor == GeneratedMessageLite.MergeFromVisitor
+//                  .INSTANCE) {
+//          }
+          return DEFAULT_INSTANCE;
+        }//4th
+        /*case MERGE_FROM_STREAM: {
+          CodedInputStream input =
+                  (CodedInputStream) arg0;
+          ExtensionRegistryLite extensionRegistry =
+                  (ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+
+                  clientPubkey_ = input.readBytes();
+                  break;
+                }
+              }
+            }
+          } catch (InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                    new InvalidProtocolBufferException(
+                            e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }//1st//5th*/
+
+        case BUILD_MESSAGE_INFO: {
+          System.out.println("fatt BUILD_MESSAGE_INFO");
+          return DEFAULT_INSTANCE;
+        }//3rd
+        case NEW_MUTABLE_INSTANCE: {
+          return new Sec1.SessionCmd0();
+        }//3rd
+        case NEW_BUILDER: {
+          return new Builder();
+        }//2nd
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
@@ -1072,14 +1188,14 @@ public final class Sec1 {
       if (value == null) {
         throw new NullPointerException();
       }
-      
+
       status_ = value.getNumber();
     }
     /**
      * <code>optional .Status status = 1;</code>
      */
     private void clearStatus() {
-      
+
       status_ = 0;
     }
 
@@ -1098,14 +1214,14 @@ public final class Sec1 {
       if (value == null) {
     throw new NullPointerException();
   }
-  
+
       devicePubkey_ = value;
     }
     /**
      * <code>optional bytes device_pubkey = 2;</code>
      */
     private void clearDevicePubkey() {
-      
+
       devicePubkey_ = getDefaultInstance().getDevicePubkey();
     }
 
@@ -1124,14 +1240,14 @@ public final class Sec1 {
       if (value == null) {
     throw new NullPointerException();
   }
-  
+
       deviceRandom_ = value;
     }
     /**
      * <code>optional bytes device_random = 3;</code>
      */
     private void clearDeviceRandom() {
-      
+
       deviceRandom_ = getDefaultInstance().getDeviceRandom();
     }
 
@@ -1339,91 +1455,94 @@ public final class Sec1 {
     protected final Object dynamicMethod(
         GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new Sec1.SessionResp0();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          Sec1.SessionResp0 other = (Sec1.SessionResp0) arg1;
-          status_ = visitor.visitInt(status_ != 0, status_,    other.status_ != 0, other.status_);
-          devicePubkey_ = visitor.visitByteString(devicePubkey_ != ByteString.EMPTY, devicePubkey_,
-              other.devicePubkey_ != ByteString.EMPTY, other.devicePubkey_);
-          deviceRandom_ = visitor.visitByteString(deviceRandom_ != ByteString.EMPTY, deviceRandom_,
-              other.deviceRandom_ != ByteString.EMPTY, other.deviceRandom_);
-          if (visitor == GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          CodedInputStream input =
-              (CodedInputStream) arg0;
-          ExtensionRegistryLite extensionRegistry =
-              (ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 8: {
-                  int rawValue = input.readEnum();
+      System.out.println("methoddd 44444 iss: ");
+      System.out.println(method);
 
-                  status_ = rawValue;
-                  break;
-                }
-                case 18: {
-
-                  devicePubkey_ = input.readBytes();
-                  break;
-                }
-                case 26: {
-
-                  deviceRandom_ = input.readBytes();
-                  break;
-                }
-              }
-            }
-          } catch (InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Sec1.SessionResp0.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
+//      switch (method) {
+//        case NEW_MUTABLE_INSTANCE: {
+//          return new Sec1.SessionResp0();
+//        }
+//        case IS_INITIALIZED: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case MAKE_IMMUTABLE: {
+//          return null;
+//        }
+//        case NEW_BUILDER: {
+//          return new Builder();
+//        }
+//        case VISIT: {
+//          Visitor visitor = (Visitor) arg0;
+//          Sec1.SessionResp0 other = (Sec1.SessionResp0) arg1;
+//          status_ = visitor.visitInt(status_ != 0, status_,    other.status_ != 0, other.status_);
+//          devicePubkey_ = visitor.visitByteString(devicePubkey_ != ByteString.EMPTY, devicePubkey_,
+//              other.devicePubkey_ != ByteString.EMPTY, other.devicePubkey_);
+//          deviceRandom_ = visitor.visitByteString(deviceRandom_ != ByteString.EMPTY, deviceRandom_,
+//              other.deviceRandom_ != ByteString.EMPTY, other.deviceRandom_);
+//          if (visitor == GeneratedMessageLite.MergeFromVisitor
+//              .INSTANCE) {
+//          }
+//          return this;
+//        }
+//        case MERGE_FROM_STREAM: {
+//          CodedInputStream input =
+//              (CodedInputStream) arg0;
+//          ExtensionRegistryLite extensionRegistry =
+//              (ExtensionRegistryLite) arg1;
+//          try {
+//            boolean done = false;
+//            while (!done) {
+//              int tag = input.readTag();
+//              switch (tag) {
+//                case 0:
+//                  done = true;
+//                  break;
+//                default: {
+//                  if (!input.skipField(tag)) {
+//                    done = true;
+//                  }
+//                  break;
+//                }
+//                case 8: {
+//                  int rawValue = input.readEnum();
+//
+//                  status_ = rawValue;
+//                  break;
+//                }
+//                case 18: {
+//
+//                  devicePubkey_ = input.readBytes();
+//                  break;
+//                }
+//                case 26: {
+//
+//                  deviceRandom_ = input.readBytes();
+//                  break;
+//                }
+//              }
+//            }
+//          } catch (InvalidProtocolBufferException e) {
+//            throw new RuntimeException(e.setUnfinishedMessage(this));
+//          } catch (java.io.IOException e) {
+//            throw new RuntimeException(
+//                new InvalidProtocolBufferException(
+//                    e.getMessage()).setUnfinishedMessage(this));
+//          } finally {
+//          }
+//        }
+//        case GET_DEFAULT_INSTANCE: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case GET_PARSER: {
+//          if (PARSER == null) {    synchronized (Sec1.SessionResp0.class) {
+//              if (PARSER == null) {
+//                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+//              }
+//            }
+//          }
+//          return PARSER;
+//        }
+//      }
       throw new UnsupportedOperationException();
     }
 
@@ -1566,14 +1685,14 @@ public final class Sec1 {
       if (value == null) {
         throw new NullPointerException();
       }
-      
+
       msg_ = value.getNumber();
     }
     /**
      * <code>optional .Sec1MsgType msg = 1;</code>
      */
     private void clearMsg() {
-      
+
       msg_ = 0;
     }
 
@@ -2124,170 +2243,172 @@ public final class Sec1 {
     protected final Object dynamicMethod(
         GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new Sec1.Sec1Payload();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          Sec1.Sec1Payload other = (Sec1.Sec1Payload) arg1;
-          msg_ = visitor.visitInt(msg_ != 0, msg_,    other.msg_ != 0, other.msg_);
-          switch (other.getPayloadCase()) {
-            case SC0: {
-              payload_ = visitor.visitOneofMessage(
-                  payloadCase_ == 20,
-                  payload_,
-                  other.payload_);
-              break;
-            }
-            case SR0: {
-              payload_ = visitor.visitOneofMessage(
-                  payloadCase_ == 21,
-                  payload_,
-                  other.payload_);
-              break;
-            }
-            case SC1: {
-              payload_ = visitor.visitOneofMessage(
-                  payloadCase_ == 22,
-                  payload_,
-                  other.payload_);
-              break;
-            }
-            case SR1: {
-              payload_ = visitor.visitOneofMessage(
-                  payloadCase_ == 23,
-                  payload_,
-                  other.payload_);
-              break;
-            }
-            case PAYLOAD_NOT_SET: {
-              visitor.visitOneofNotSet(payloadCase_ != 0);
-              break;
-            }
-          }
-          if (visitor == GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            if (other.payloadCase_ != 0) {
-              payloadCase_ = other.payloadCase_;
-            }
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          CodedInputStream input =
-              (CodedInputStream) arg0;
-          ExtensionRegistryLite extensionRegistry =
-              (ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 8: {
-                  int rawValue = input.readEnum();
-
-                  msg_ = rawValue;
-                  break;
-                }
-                case 162: {
-                  Sec1.SessionCmd0.Builder subBuilder = null;
-                  if (payloadCase_ == 20) {
-                    subBuilder = ((Sec1.SessionCmd0) payload_).toBuilder();
-                  }
-                  payload_ =
-                       input.readMessage(Sec1.SessionCmd0.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((Sec1.SessionCmd0) payload_);
-                    payload_ = subBuilder.buildPartial();
-                  }
-                  payloadCase_ = 20;
-                  break;
-                }
-                case 170: {
-                  Sec1.SessionResp0.Builder subBuilder = null;
-                  if (payloadCase_ == 21) {
-                    subBuilder = ((Sec1.SessionResp0) payload_).toBuilder();
-                  }
-                  payload_ =
-                       input.readMessage(Sec1.SessionResp0.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((Sec1.SessionResp0) payload_);
-                    payload_ = subBuilder.buildPartial();
-                  }
-                  payloadCase_ = 21;
-                  break;
-                }
-                case 178: {
-                  Sec1.SessionCmd1.Builder subBuilder = null;
-                  if (payloadCase_ == 22) {
-                    subBuilder = ((Sec1.SessionCmd1) payload_).toBuilder();
-                  }
-                  payload_ =
-                       input.readMessage(Sec1.SessionCmd1.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((Sec1.SessionCmd1) payload_);
-                    payload_ = subBuilder.buildPartial();
-                  }
-                  payloadCase_ = 22;
-                  break;
-                }
-                case 186: {
-                  Sec1.SessionResp1.Builder subBuilder = null;
-                  if (payloadCase_ == 23) {
-                    subBuilder = ((Sec1.SessionResp1) payload_).toBuilder();
-                  }
-                  payload_ =
-                       input.readMessage(Sec1.SessionResp1.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((Sec1.SessionResp1) payload_);
-                    payload_ = subBuilder.buildPartial();
-                  }
-                  payloadCase_ = 23;
-                  break;
-                }
-              }
-            }
-          } catch (InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Sec1.Sec1Payload.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
+        System.out.println("methoddd 55555 iss: ");
+        System.out.println(method);
+//      switch (method) {
+//        case NEW_MUTABLE_INSTANCE: {
+//          return new Sec1.Sec1Payload();
+//        }
+//        case IS_INITIALIZED: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case MAKE_IMMUTABLE: {
+//          return null;
+//        }
+//        case NEW_BUILDER: {
+//          return new Builder();
+//        }
+//        case VISIT: {
+//          Visitor visitor = (Visitor) arg0;
+//          Sec1.Sec1Payload other = (Sec1.Sec1Payload) arg1;
+//          msg_ = visitor.visitInt(msg_ != 0, msg_,    other.msg_ != 0, other.msg_);
+//          switch (other.getPayloadCase()) {
+//            case SC0: {
+//              payload_ = visitor.visitOneofMessage(
+//                  payloadCase_ == 20,
+//                  payload_,
+//                  other.payload_);
+//              break;
+//            }
+//            case SR0: {
+//              payload_ = visitor.visitOneofMessage(
+//                  payloadCase_ == 21,
+//                  payload_,
+//                  other.payload_);
+//              break;
+//            }
+//            case SC1: {
+//              payload_ = visitor.visitOneofMessage(
+//                  payloadCase_ == 22,
+//                  payload_,
+//                  other.payload_);
+//              break;
+//            }
+//            case SR1: {
+//              payload_ = visitor.visitOneofMessage(
+//                  payloadCase_ == 23,
+//                  payload_,
+//                  other.payload_);
+//              break;
+//            }
+//            case PAYLOAD_NOT_SET: {
+//              visitor.visitOneofNotSet(payloadCase_ != 0);
+//              break;
+//            }
+//          }
+//          if (visitor == GeneratedMessageLite.MergeFromVisitor
+//              .INSTANCE) {
+//            if (other.payloadCase_ != 0) {
+//              payloadCase_ = other.payloadCase_;
+//            }
+//          }
+//          return this;
+//        }
+//        case MERGE_FROM_STREAM: {
+//          CodedInputStream input =
+//              (CodedInputStream) arg0;
+//          ExtensionRegistryLite extensionRegistry =
+//              (ExtensionRegistryLite) arg1;
+//          try {
+//            boolean done = false;
+//            while (!done) {
+//              int tag = input.readTag();
+//              switch (tag) {
+//                case 0:
+//                  done = true;
+//                  break;
+//                default: {
+//                  if (!input.skipField(tag)) {
+//                    done = true;
+//                  }
+//                  break;
+//                }
+//                case 8: {
+//                  int rawValue = input.readEnum();
+//
+//                  msg_ = rawValue;
+//                  break;
+//                }
+//                case 162: {
+//                  Sec1.SessionCmd0.Builder subBuilder = null;
+//                  if (payloadCase_ == 20) {
+//                    subBuilder = ((Sec1.SessionCmd0) payload_).toBuilder();
+//                  }
+//                  payload_ =
+//                       input.readMessage(Sec1.SessionCmd0.parser(), extensionRegistry);
+//                  if (subBuilder != null) {
+//                    subBuilder.mergeFrom((Sec1.SessionCmd0) payload_);
+//                    payload_ = subBuilder.buildPartial();
+//                  }
+//                  payloadCase_ = 20;
+//                  break;
+//                }
+//                case 170: {
+//                  Sec1.SessionResp0.Builder subBuilder = null;
+//                  if (payloadCase_ == 21) {
+//                    subBuilder = ((Sec1.SessionResp0) payload_).toBuilder();
+//                  }
+//                  payload_ =
+//                       input.readMessage(Sec1.SessionResp0.parser(), extensionRegistry);
+//                  if (subBuilder != null) {
+//                    subBuilder.mergeFrom((Sec1.SessionResp0) payload_);
+//                    payload_ = subBuilder.buildPartial();
+//                  }
+//                  payloadCase_ = 21;
+//                  break;
+//                }
+//                case 178: {
+//                  Sec1.SessionCmd1.Builder subBuilder = null;
+//                  if (payloadCase_ == 22) {
+//                    subBuilder = ((Sec1.SessionCmd1) payload_).toBuilder();
+//                  }
+//                  payload_ =
+//                       input.readMessage(Sec1.SessionCmd1.parser(), extensionRegistry);
+//                  if (subBuilder != null) {
+//                    subBuilder.mergeFrom((Sec1.SessionCmd1) payload_);
+//                    payload_ = subBuilder.buildPartial();
+//                  }
+//                  payloadCase_ = 22;
+//                  break;
+//                }
+//                case 186: {
+//                  Sec1.SessionResp1.Builder subBuilder = null;
+//                  if (payloadCase_ == 23) {
+//                    subBuilder = ((Sec1.SessionResp1) payload_).toBuilder();
+//                  }
+//                  payload_ =
+//                       input.readMessage(Sec1.SessionResp1.parser(), extensionRegistry);
+//                  if (subBuilder != null) {
+//                    subBuilder.mergeFrom((Sec1.SessionResp1) payload_);
+//                    payload_ = subBuilder.buildPartial();
+//                  }
+//                  payloadCase_ = 23;
+//                  break;
+//                }
+//              }
+//            }
+//          } catch (InvalidProtocolBufferException e) {
+//            throw new RuntimeException(e.setUnfinishedMessage(this));
+//          } catch (java.io.IOException e) {
+//            throw new RuntimeException(
+//                new InvalidProtocolBufferException(
+//                    e.getMessage()).setUnfinishedMessage(this));
+//          } finally {
+//          }
+//        }
+//        case GET_DEFAULT_INSTANCE: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case GET_PARSER: {
+//          if (PARSER == null) {    synchronized (Sec1.Sec1Payload.class) {
+//              if (PARSER == null) {
+//                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+//              }
+//            }
+//          }
+//          return PARSER;
+//        }
+//      }
       throw new UnsupportedOperationException();
     }
 

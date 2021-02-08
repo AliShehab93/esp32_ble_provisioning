@@ -25,7 +25,7 @@ public final class Session {
       implements Internal.EnumLite {
     /**
      * <pre>
-     * Unsecured - plaintext communication 
+     * Unsecured - plaintext communication
      * </pre>
      *
      * <code>SecScheme0 = 0;</code>
@@ -44,7 +44,7 @@ public final class Session {
 
     /**
      * <pre>
-     * Unsecured - plaintext communication 
+     * Unsecured - plaintext communication
      * </pre>
      *
      * <code>SecScheme0 = 0;</code>
@@ -117,7 +117,7 @@ public final class Session {
     /**
      * <code>optional .Sec0Payload sec0 = 10;</code>
      */
-    Sec0.Sec0Payload getSec0();
+//    Sec0.Sec0Payload getSec0();
 
     /**
      * <code>optional .Sec1Payload sec1 = 11;</code>
@@ -207,14 +207,14 @@ public final class Session {
       if (value == null) {
         throw new NullPointerException();
       }
-      
+
       secVer_ = value.getNumber();
     }
     /**
      * <code>optional .SecSchemeVersion sec_ver = 2;</code>
      */
     private void clearSecVer() {
-      
+
       secVer_ = 0;
     }
 
@@ -222,43 +222,43 @@ public final class Session {
     /**
      * <code>optional .Sec0Payload sec0 = 10;</code>
      */
-    public Sec0.Sec0Payload getSec0() {
-      if (protoCase_ == 10) {
-         return (Sec0.Sec0Payload) proto_;
-      }
-      return Sec0.Sec0Payload.getDefaultInstance();
-    }
+//    public Sec0.Sec0Payload getSec0() {
+//      if (protoCase_ == 10) {
+//         return (Sec0.Sec0Payload) proto_;
+//      }
+//      return Sec0.Sec0Payload.getDefaultInstance();
+//    }
     /**
      * <code>optional .Sec0Payload sec0 = 10;</code>
      */
-    private void setSec0(Sec0.Sec0Payload value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      proto_ = value;
-      protoCase_ = 10;
-    }
+//    private void setSec0(Sec0.Sec0Payload value) {
+//      if (value == null) {
+//        throw new NullPointerException();
+//      }
+//      proto_ = value;
+//      protoCase_ = 10;
+//    }
     /**
      * <code>optional .Sec0Payload sec0 = 10;</code>
      */
-    private void setSec0(
-        Sec0.Sec0Payload.Builder builderForValue) {
-      proto_ = builderForValue.build();
-      protoCase_ = 10;
-    }
-    /**
-     * <code>optional .Sec0Payload sec0 = 10;</code>
-     */
-    private void mergeSec0(Sec0.Sec0Payload value) {
-      if (protoCase_ == 10 &&
-          proto_ != Sec0.Sec0Payload.getDefaultInstance()) {
-        proto_ = Sec0.Sec0Payload.newBuilder((Sec0.Sec0Payload) proto_)
-            .mergeFrom(value).buildPartial();
-      } else {
-        proto_ = value;
-      }
-      protoCase_ = 10;
-    }
+//    private void setSec0(
+//        Sec0.Sec0Payload.Builder builderForValue) {
+//      proto_ = builderForValue.build();
+//      protoCase_ = 10;
+//    }
+//    /**
+//     * <code>optional .Sec0Payload sec0 = 10;</code>
+//     */
+//    private void mergeSec0(Sec0.Sec0Payload value) {
+//      if (protoCase_ == 10 &&
+//          proto_ != Sec0.Sec0Payload.getDefaultInstance()) {
+//        proto_ = Sec0.Sec0Payload.newBuilder((Sec0.Sec0Payload) proto_)
+//            .mergeFrom(value).buildPartial();
+//      } else {
+//        proto_ = value;
+//      }
+//      protoCase_ = 10;
+//    }
     /**
      * <code>optional .Sec0Payload sec0 = 10;</code>
      */
@@ -325,9 +325,9 @@ public final class Session {
       if (secVer_ != Session.SecSchemeVersion.SecScheme0.getNumber()) {
         output.writeEnum(2, secVer_);
       }
-      if (protoCase_ == 10) {
-        output.writeMessage(10, (Sec0.Sec0Payload) proto_);
-      }
+//      if (protoCase_ == 10) {
+//        output.writeMessage(10, (Sec0.Sec0Payload) proto_);
+//      }
       if (protoCase_ == 11) {
         output.writeMessage(11, (Sec1.Sec1Payload) proto_);
       }
@@ -342,10 +342,10 @@ public final class Session {
         size += CodedOutputStream
           .computeEnumSize(2, secVer_);
       }
-      if (protoCase_ == 10) {
-        size += CodedOutputStream
-          .computeMessageSize(10, (Sec0.Sec0Payload) proto_);
-      }
+//      if (protoCase_ == 10) {
+//        size += CodedOutputStream
+//          .computeMessageSize(10, (Sec0.Sec0Payload) proto_);
+//      }
       if (protoCase_ == 11) {
         size += CodedOutputStream
           .computeMessageSize(11, (Sec1.Sec1Payload) proto_);
@@ -487,34 +487,34 @@ public final class Session {
       /**
        * <code>optional .Sec0Payload sec0 = 10;</code>
        */
-      public Sec0.Sec0Payload getSec0() {
-        return instance.getSec0();
-      }
+//      public Sec0.Sec0Payload getSec0() {
+//        return instance.getSec0();
+//      }
       /**
        * <code>optional .Sec0Payload sec0 = 10;</code>
        */
-      public Builder setSec0(Sec0.Sec0Payload value) {
-        copyOnWrite();
-        instance.setSec0(value);
-        return this;
-      }
+//      public Builder setSec0(Sec0.Sec0Payload value) {
+//        copyOnWrite();
+//        instance.setSec0(value);
+//        return this;
+//      }
       /**
        * <code>optional .Sec0Payload sec0 = 10;</code>
        */
-      public Builder setSec0(
-          Sec0.Sec0Payload.Builder builderForValue) {
-        copyOnWrite();
-        instance.setSec0(builderForValue);
-        return this;
-      }
+//      public Builder setSec0(
+//          Sec0.Sec0Payload.Builder builderForValue) {
+//        copyOnWrite();
+//        instance.setSec0(builderForValue);
+//        return this;
+//      }
       /**
        * <code>optional .Sec0Payload sec0 = 10;</code>
        */
-      public Builder mergeSec0(Sec0.Sec0Payload value) {
-        copyOnWrite();
-        instance.mergeSec0(value);
-        return this;
-      }
+//      public Builder mergeSec0(Sec0.Sec0Payload value) {
+//        copyOnWrite();
+//        instance.mergeSec0(value);
+//        return this;
+//      }
       /**
        * <code>optional .Sec0Payload sec0 = 10;</code>
        */
@@ -569,128 +569,131 @@ public final class Session {
     protected final Object dynamicMethod(
         GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new Session.SessionData();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          Session.SessionData other = (Session.SessionData) arg1;
-          secVer_ = visitor.visitInt(secVer_ != 0, secVer_,    other.secVer_ != 0, other.secVer_);
-          switch (other.getProtoCase()) {
-            case SEC0: {
-              proto_ = visitor.visitOneofMessage(
-                  protoCase_ == 10,
-                  proto_,
-                  other.proto_);
-              break;
-            }
-            case SEC1: {
-              proto_ = visitor.visitOneofMessage(
-                  protoCase_ == 11,
-                  proto_,
-                  other.proto_);
-              break;
-            }
-            case PROTO_NOT_SET: {
-              visitor.visitOneofNotSet(protoCase_ != 0);
-              break;
-            }
-          }
-          if (visitor == GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            if (other.protoCase_ != 0) {
-              protoCase_ = other.protoCase_;
-            }
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          CodedInputStream input =
-              (CodedInputStream) arg0;
-          ExtensionRegistryLite extensionRegistry =
-              (ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 16: {
-                  int rawValue = input.readEnum();
+      System.out.println("methoddd sessionn iss: ");
+      System.out.println(method);
 
-                  secVer_ = rawValue;
-                  break;
-                }
-                case 82: {
-                  Sec0.Sec0Payload.Builder subBuilder = null;
-                  if (protoCase_ == 10) {
-                    subBuilder = ((Sec0.Sec0Payload) proto_).toBuilder();
-                  }
-                  proto_ =
-                       input.readMessage(Sec0.Sec0Payload.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((Sec0.Sec0Payload) proto_);
-                    proto_ = subBuilder.buildPartial();
-                  }
-                  protoCase_ = 10;
-                  break;
-                }
-                case 90: {
-                  Sec1.Sec1Payload.Builder subBuilder = null;
-                  if (protoCase_ == 11) {
-                    subBuilder = ((Sec1.Sec1Payload) proto_).toBuilder();
-                  }
-                  proto_ =
-                       input.readMessage(Sec1.Sec1Payload.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((Sec1.Sec1Payload) proto_);
-                    proto_ = subBuilder.buildPartial();
-                  }
-                  protoCase_ = 11;
-                  break;
-                }
-              }
-            }
-          } catch (InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Session.SessionData.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
+//      switch (method) {
+//        case NEW_MUTABLE_INSTANCE: {
+//          return new Session.SessionData();
+//        }
+//        case IS_INITIALIZED: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case MAKE_IMMUTABLE: {
+//          return null;
+//        }
+//        case NEW_BUILDER: {
+//          return new Builder();
+//        }
+//        case VISIT: {
+//          Visitor visitor = (Visitor) arg0;
+//          Session.SessionData other = (Session.SessionData) arg1;
+//          secVer_ = visitor.visitInt(secVer_ != 0, secVer_,    other.secVer_ != 0, other.secVer_);
+//          switch (other.getProtoCase()) {
+//            case SEC0: {
+//              proto_ = visitor.visitOneofMessage(
+//                  protoCase_ == 10,
+//                  proto_,
+//                  other.proto_);
+//              break;
+//            }
+//            case SEC1: {
+//              proto_ = visitor.visitOneofMessage(
+//                  protoCase_ == 11,
+//                  proto_,
+//                  other.proto_);
+//              break;
+//            }
+//            case PROTO_NOT_SET: {
+//              visitor.visitOneofNotSet(protoCase_ != 0);
+//              break;
+//            }
+//          }
+//          if (visitor == GeneratedMessageLite.MergeFromVisitor
+//              .INSTANCE) {
+//            if (other.protoCase_ != 0) {
+//              protoCase_ = other.protoCase_;
+//            }
+//          }
+//          return this;
+//        }
+//        case MERGE_FROM_STREAM: {
+//          CodedInputStream input =
+//              (CodedInputStream) arg0;
+//          ExtensionRegistryLite extensionRegistry =
+//              (ExtensionRegistryLite) arg1;
+//          try {
+//            boolean done = false;
+//            while (!done) {
+//              int tag = input.readTag();
+//              switch (tag) {
+//                case 0:
+//                  done = true;
+//                  break;
+//                default: {
+//                  if (!input.skipField(tag)) {
+//                    done = true;
+//                  }
+//                  break;
+//                }
+//                case 16: {
+//                  int rawValue = input.readEnum();
+//
+//                  secVer_ = rawValue;
+//                  break;
+//                }
+//                case 82: {
+//                  Sec0.Sec0Payload.Builder subBuilder = null;
+//                  if (protoCase_ == 10) {
+//                    subBuilder = ((Sec0.Sec0Payload) proto_).toBuilder();
+//                  }
+//                  proto_ =
+//                       input.readMessage(Sec0.Sec0Payload.parser(), extensionRegistry);
+//                  if (subBuilder != null) {
+//                    subBuilder.mergeFrom((Sec0.Sec0Payload) proto_);
+//                    proto_ = subBuilder.buildPartial();
+//                  }
+//                  protoCase_ = 10;
+//                  break;
+//                }
+//                case 90: {
+//                  Sec1.Sec1Payload.Builder subBuilder = null;
+//                  if (protoCase_ == 11) {
+//                    subBuilder = ((Sec1.Sec1Payload) proto_).toBuilder();
+//                  }
+//                  proto_ =
+//                       input.readMessage(Sec1.Sec1Payload.parser(), extensionRegistry);
+//                  if (subBuilder != null) {
+//                    subBuilder.mergeFrom((Sec1.Sec1Payload) proto_);
+//                    proto_ = subBuilder.buildPartial();
+//                  }
+//                  protoCase_ = 11;
+//                  break;
+//                }
+//              }
+//            }
+//          } catch (InvalidProtocolBufferException e) {
+//            throw new RuntimeException(e.setUnfinishedMessage(this));
+//          } catch (java.io.IOException e) {
+//            throw new RuntimeException(
+//                new InvalidProtocolBufferException(
+//                    e.getMessage()).setUnfinishedMessage(this));
+//          } finally {
+//          }
+//        }
+//        case GET_DEFAULT_INSTANCE: {
+//          return DEFAULT_INSTANCE;
+//        }
+//        case GET_PARSER: {
+//          if (PARSER == null) {    synchronized (Session.SessionData.class) {
+//              if (PARSER == null) {
+//                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+//              }
+//            }
+//          }
+//          return PARSER;
+//        }
+//      }
       throw new UnsupportedOperationException();
     }
 

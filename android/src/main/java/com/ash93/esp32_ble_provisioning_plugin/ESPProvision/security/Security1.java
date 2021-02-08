@@ -14,11 +14,12 @@
 
 
 package com.ash93.esp32_ble_provisioning_plugin.ESPProvision.security;
+
 import android.util.Log;
 
-//import com.espressif.provisioning.utils.HexEncoder;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.espressif.Sec1;
 import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.espressif.Session;
+import com.ash93.esp32_ble_provisioning_plugin.ESPProvision.utils.HexEncoder;
 import com.google.crypto.tink.subtle.X25519;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -34,6 +35,8 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+//import com.espressif.provisioning.utils.HexEncoder;
+
 //import espressif.Sec1;
 //import espressif.Session;
 
@@ -45,7 +48,6 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class Security1 implements Security {
     private static final String TAG = "Espressif::" + Security1.class.getSimpleName();
-
     private static final int SESSION_STATE_REQUEST1 = 0;
     private static final int SESSION_STATE_RESPONSE1_REQUEST2 = 1;
     private static final int SESSION_STATE_RESPONSE2 = 2;
@@ -75,6 +77,7 @@ public class Security1 implements Security {
         byte[] request = null;
         switch (this.sessionState) {
             case SESSION_STATE_REQUEST1:
+                System.out.println("heerreee 1111");
                 this.sessionState = SESSION_STATE_RESPONSE1_REQUEST2;
                 request = this.getStep0Request();
                 break;
@@ -96,11 +99,14 @@ public class Security1 implements Security {
 
     private byte[] getStep0Request() {
         try {
+            System.out.println("heerreee 1111 ++++");
             this.generateKeyPair();
+            System.out.println("hereee Sec1.SessionCmd0 sessionCmd0");
             Sec1.SessionCmd0 sessionCmd0 = Sec1.SessionCmd0
                     .newBuilder()
                     .setClientPubkey(ByteString.copyFrom(this.publicKey))
                     .build();
+            System.out.println("end off Sec1.SessionCmd0 sessionCmd0");
             Sec1.Sec1Payload sec1Payload = Sec1.Sec1Payload
                     .newBuilder()
                     .setSc0(sessionCmd0)
@@ -153,7 +159,7 @@ public class Security1 implements Security {
                 MessageDigest md = MessageDigest.getInstance("SHA256");
                 md.update(this.proofOfPossession);
                 byte[] digest = md.digest();
-                sharedKey = android.src.main.java.com.ash93.esp32_ble_provisioning_plugin.ESPProvision.utils.HexEncoder.xor(sharedKey, digest);
+                sharedKey = HexEncoder.xor(sharedKey, digest);
             }
 
             IvParameterSpec ivParameterSpec = new IvParameterSpec(deviceRandom);

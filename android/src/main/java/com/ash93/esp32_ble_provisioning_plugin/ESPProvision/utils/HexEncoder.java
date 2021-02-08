@@ -1,4 +1,4 @@
-// Copyright 2020 Espressif Systems (Shanghai) PTE LTD
+package com.ash93.esp32_ble_provisioning_plugin.ESPProvision.utils;// Copyright 2020 Espressif Systems (Shanghai) PTE LTD
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-package android.src.main.java.com.ash93.esp32_ble_provisioning_plugin.ESPProvision.utils;
 
 /**
  * Util class for manipulating byte Arrays and
