@@ -1,9 +1,9 @@
 name: esp32_ble_provisioning_plugin
 description: An esp32 ble provisioning plugin
 version: 0.0.1
-author: Ali Shehab
+author: AliShehab93 (Ali Shehab)
 email: ali.h.shehab93@gmail.com
-homepage:
+homepage: https://github.com/AliShehab93/esp32_ble_provisioning
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
