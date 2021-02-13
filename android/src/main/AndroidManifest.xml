@@ -1,0 +1,3 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.ash93.esp32_ble_provisioning">
+</manifest>
