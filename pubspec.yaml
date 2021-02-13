@@ -1,8 +1,9 @@
 name: esp32_ble_provisioning
-description: A new Flutter project.
+description: A new Flutter plugin for esp32 ble provisioning.
 version: 0.0.1
-author:
-homepage:
+author: AliShehab93 (Ali Shehab)
+email: ali.h.shehab93@gmail.com
+homepage: https://github.com/AliShehab93/esp32_ble_provisioning
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

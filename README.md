@@ -1,15 +1,25 @@
-# esp32_ble_provisioning
+# esp32_ble_provisioning - -new
 
-A new Flutter project.
+An esp32 ble provisioning plugin supported for both platforms [android - ios].
+This plugin works on provisioning to devices by bluetooth only.
+Wi-fi provisioning is not supported.
 
 ## Getting Started
+###### This plugin supports both android and ios platforms
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+## Ios integration:
+    1. Need to add NSBluetoothAlwaysUsageDescription in info.plist file in the project/ios directopry
+    
+    2. Assign minimum platform version to 11
+    
+    3. For making all your packages in your project have minimum version to 11 you can add this code to your podfile
+     post_install do |installer|
+        installer.pods_project.targets.each do |target|
+            flutter_additional_ios_build_settings(target)
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+             end
+        end
+     end
+## Android integration:
+    Need to add minSdkVersion to 24 in app/gradle

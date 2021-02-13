@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:esp32_ble_provisioning/esp32_ble_provisioning.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('esp32_ble_provisioning');
@@ -17,7 +16,4 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await Esp32BleProvisioning.platformVersion, '42');
-  });
 }
