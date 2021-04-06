@@ -60,6 +60,7 @@ public class BLEProvisionLanding {
 
         ESPProvisionManager.shared.searchESPDevices(devicePrefix: "", transport: .ble) { bleDevices, error in
             DispatchQueue.main.async {
+
                 if(bleDevices != nil){
                     self.bleDevices = bleDevices!
                 }else{
