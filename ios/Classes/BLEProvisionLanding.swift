@@ -47,21 +47,25 @@ protocol BLEStatusProtocol {
 public class BLEProvisionLanding {
     var bleDevices:[ESPDevice] = []
     var bleDevicesNames:[String] = []
-    
+
     /// search for available ble devices
   public func searchForBleDevices () {
     scanBleDevices()
   }
-    
+
     /// start scannning
     func scanBleDevices() {
         self.bleDevices = []
         self.bleDevicesNames = []
-        
+
         ESPProvisionManager.shared.searchESPDevices(devicePrefix: "", transport: .ble) { bleDevices, error in
             DispatchQueue.main.async {
-                self.bleDevices = bleDevices!
-                
+                if(bleDevices != nil){
+                    self.bleDevices = bleDevices!
+                }else{
+                    self.bleDevices = []
+                }
+
                 for device in self.bleDevices {
                     self.bleDevicesNames.append(device.name)
                 }
